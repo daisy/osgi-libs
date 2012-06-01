@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>Saxon HE OSGi Distribution</name>
+  <groupId>org.daisy.example.libs</groupId>
+  <artifactId>saxon-he-osgi</artifactId>
+  <version>9.4.0</version>
+
+  <packaging>bundle</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>Saxon-HE</artifactId>
+      <version>9.4</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.3.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
+          </archive>
+          <instructions>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Project-Name>${project.name}</Project-Name>
+            <Bundle-SymbolicName>net.sf.saxon.saxon-he-osgi</Bundle-SymbolicName>
+  <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-RequiredExecutionEnvironment>J2SE-1.5</Bundle-RequiredExecutionEnvironment>
+            <Main-Class>net.sf.saxon.Transform</Main-Class>
+            <Export-Package>
+              javax.xml.xquery.*,
+              net.sf.saxon.*;version=${project.version}
+            </Export-Package>
+            <Import-Package>
+              javax.xml.stream;version="1.0.1";resolution:=optional,
+              javax.xml.stream.events;version="1.0.1";resolution:=optional,
+              javax.xml.xquery;resolution:=optional,
+              org.apache.xml.resolver.*;resolution:=optional,
+              *
+            </Import-Package>
+            <Embed-Dependency>*;inline=true</Embed-Dependency>
+            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

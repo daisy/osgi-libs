@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.daisy.example.libs</groupId>
+    <artifactId>jing-osgi</artifactId>
+    <version>20091111.0.0</version>
+    <packaging>bundle</packaging>
+
+  <name>jing-trang OSGi bundle</name>
+  <description>OSGi Bundle for Jing/Trang - tools for validating and translating RelaxNG</description>
+  <url>http://code.google.com/p/jing-trang</url>
+  <licenses>
+    <license>
+      <name>New BSD License</name>
+      <url>http://www.opensource.org/licenses/bsd-license.php</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>http://jing-trang.googlecode.com/svn/trunk/</connection>
+    <url>http://code.google.com/p/jing-trang/source/browse/</url>
+  </scm>
+    <developers>
+        <developer>
+            <id>jclark</id>
+            <name>James Clark</name>
+            <email>jjc@jclark.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <dependencies>
+      <dependency>
+        <groupId>com.thaiopensource</groupId>
+        <artifactId>jing</artifactId>
+        <version>20091111</version>
+      </dependency>
+      <!-- <dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+        <version>2.9.1</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>xml-apis</groupId>
+        <artifactId>xml-apis</artifactId>
+        <version>2.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>saxon</groupId>
+        <artifactId>saxon</artifactId>
+        <version>6.5.3</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>net.sf.saxon</groupId>
+        <artifactId>Saxon-HE</artifactId>
+        <version>9.4</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>isorelax</groupId>
+        <artifactId>isorelax</artifactId>
+        <version>20030108</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>xml-resolver</groupId>
+        <artifactId>xml-resolver</artifactId>
+        <version>1.2</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>xalan</groupId>
+        <artifactId>xalan</artifactId>
+        <version>2.7.1</version>
+        <optional>true</optional>
+      </dependency> -->
+    </dependencies>
+    
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <archive>
+                      <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <instructions>
+                        <Bundle-SymbolicName>com.thaiopensource.jing</Bundle-SymbolicName>
+                        <Export-Package>org.relaxng.datatype,
+                                        org.relaxng.datatype.helpers,
+                                        com.thaiopensource.*
+                                        <!-- com.thaiopensource.util,
+                                        com.thaiopensource.validate.*,
+                                        com.thaiopensource.xml.sax -->
+                        </Export-Package>
+                        <Import-Package>com.icl.saxon;resolution:=optional,
+                                        net.sf.saxon;resolution:=optional,
+                                        org.apache.tools.ant.*;resolution:=optional,
+                                        org.apache.xalan.*;resolution:=optional,
+                                        org.apache.xerces.*;resolution:=optional,
+                                        org.apache.xml.resolver.*;resolution:=optional,
+                                        org.apache.tools.ant.*;resolution:=optional,
+                                        org.iso_relax.*;resolution:=optional,
+                                        *                                        
+                        </Import-Package>
+                        <Embed-Dependency>*;inline=true</Embed-Dependency>
+                        <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

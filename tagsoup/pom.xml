@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.daisy.example.libs</groupId>
+    <artifactId>tagsoup-osgi</artifactId>
+    <version>1.2.1</version>
+    <packaging>bundle</packaging>
+
+    <name>TagSoup OSGi bundle</name>
+    <description>TagSoup is a SAX-compliant parser written in Java that, instead of parsing well-formed or valid XML, parses HTML as it is found in the wild: poor, nasty and brutish, though quite often far from short. TagSoup is designed for people who have to process this stuff using some semblance of a rational application design. By providing a SAX interface, it allows standard XML tools to be applied to even the worst HTML. TagSoup also includes a command-line processor that reads HTML files and can generate either clean HTML or well-formed XML that is a close approximation to XHTML.</description>
+    <url>http://home.ccil.org/~cowan/XML/tagsoup/</url>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>http://home.ccil.org/~cowan/tagsoup/tagsoup-1.2.1-src.zip</url>
+    </scm>
+    <developers>
+        <developer>
+            <name>John Cowan</name>
+        </developer>
+    </developers>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.ccil.cowan.tagsoup</groupId>
+        <artifactId>tagsoup</artifactId>
+        <version>1.2.1</version>
+      </dependency>
+    </dependencies>
+    
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <archive>
+                      <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <instructions>
+                        <Bundle-SymbolicName>org.ccil.cowan.tagsoup</Bundle-SymbolicName>
+                        <Export-Package>org.ccil.cowan.tagsoup.*</Export-Package>
+                        <Embed-Dependency>*;inline=true</Embed-Dependency>
+                        <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
