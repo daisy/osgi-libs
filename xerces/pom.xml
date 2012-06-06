@@ -1,17 +1,22 @@
-<?xml version="1.0"?>
-<project
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>org.daisy.example.libs</groupId>
-    <artifactId>xerces-osgi</artifactId>
-    <version>2.10.0</version>
-    <packaging>bundle</packaging>
+  <modelVersion>4.0.0</modelVersion>
 
-    <name>Xerces-J OSGi bundle</name>
-  <description>
+  <parent>
+    <groupId>org.daisy</groupId>
+    <artifactId>daisy</artifactId>
+    <version>1</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>org.daisy.example.libs</groupId>
+  <artifactId>xerces-osgi</artifactId>
+  <version>2.10.0</version>
+  <packaging>bundle</packaging>
+
+  <name>Xerces-J (OSGi bundle)</name>
+  <description>An OSGi Bundle for Xerces-J.
       Xerces2 is the next generation of high performance, fully compliant XML parsers in the Apache Xerces family. This new version of Xerces introduces the Xerces Native Interface (XNI), a complete framework for building parser components and configurations that is extremely modular and easy to program.
 
     The Apache Xerces2 parser is the reference implementation of XNI but other parser components, configurations, and parsers can be written using the Xerces Native Interface. For complete design and implementation documents, refer to the XNI Manual.
@@ -22,61 +27,53 @@
 
     Xerces2 is able to parse documents written according to the XML 1.1 Recommendation, except that it does not yet provide an option to enable normalization checking as described in section 2.13 of this specification. It also handles namespaces according to the XML Namespaces 1.1 Recommendation, and will correctly serialize XML 1.1 documents if the DOM level 3 load/save APIs are in use.  
     </description>
-    <url>https://xerces.apache.org/xerces2-j/</url>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <scm>
-        <url>https://svn.apache.org/repos/asf/xerces/java/</url>
-        <connection>https://svn.apache.org/repos/asf/xerces/java/tags/Xerces-J_2_10_0/</connection>
-    </scm>
-    <developers>
-        <developer>
-            <id>xerces</id>
-            <name>Apache Software Foundation</name>
-            <email>j-dev@xerces.apache.org</email>
-            <url>http://www.apache.org</url>
-            <organization>Apache Software Foundation</organization>
-            <organizationUrl>http://www.apache.org</organizationUrl>
-        </developer>
-    </developers>
+  <url>https://xerces.apache.org/xerces2-j/</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://svn.apache.org/repos/asf/xerces/java/</url>
+    <connection>https://svn.apache.org/repos/asf/xerces/java/tags/Xerces-J_2_10_0/</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>xerces</id>
+      <name>Apache Software Foundation</name>
+      <email>j-dev@xerces.apache.org</email>
+      <url>http://www.apache.org</url>
+      <organization>Apache Software Foundation</organization>
+      <organizationUrl>http://www.apache.org</organizationUrl>
+    </developer>
+  </developers>
 
-    <dependencies>
-      <dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-        <version>2.10.0</version>
-      </dependency>
-    </dependencies>
-    
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.10.0</version>
+    </dependency>
+  </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.3.7</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <archive>
-                      <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                    <instructions>
-                        <Bundle-SymbolicName>org.apache.xerces</Bundle-SymbolicName>
-                        <Export-Package>org.apache.*,org.w3c.dom.html;-split-package:=merge-first</Export-Package>
-                        <Import-Package>!sun.io.*,org.apache.xml.resolver*;version="[1.2,2)";resolution:=optional,*</Import-Package>
-                        <Embed-Dependency>*;inline=true</Embed-Dependency>
-                        <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>org.apache.xerces</Bundle-SymbolicName>
+            <Export-Package>org.apache.*,org.w3c.dom.html;-split-package:=merge-first</Export-Package>
+            <Import-Package>!sun.io.*,org.apache.xml.resolver*;version="[1.2,2)";resolution:=optional,*</Import-Package>
+            <Embed-Dependency>*;inline=true</Embed-Dependency>
+            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

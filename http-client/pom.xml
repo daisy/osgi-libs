@@ -1,63 +1,72 @@
-<?xml version="1.0"?>
-<project
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>org.daisy.example.libs</groupId>
-    <artifactId>commons-httpclient-osgi</artifactId>
-    <version>3.1.0</version>
-    <packaging>bundle</packaging>
+  <modelVersion>4.0.0</modelVersion>
 
-    <name>${project.artifactId} bundle</name>
-    <description>
-        This bundle simply wraps commons-httpclient-${project.version}.jar.
-    </description>
-    
-    <dependencies>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-codec</groupId>
-                    <artifactId>commons-codec</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
+  <parent>
+    <groupId>org.daisy</groupId>
+    <artifactId>daisy</artifactId>
+    <version>1</version>
+    <relativePath/>
+  </parent>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.3.7</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <archive>
-                      <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                    <instructions>
-                        <Bundle-SymbolicName>org.apache.commons.httpclient</Bundle-SymbolicName>
-                        <Export-Package>*;-split-package:=merge-first</Export-Package>
-                        <Import-Package>javax.*;resolution:=optional,*</Import-Package>
-                        <Embed-Dependency>*;inline=true</Embed-Dependency>
-                        <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
-                    </instructions>
+  <groupId>org.daisy.example.libs</groupId>
+  <artifactId>commons-httpclient-osgi</artifactId>
+  <version>3.1.0</version>
+  <packaging>bundle</packaging>
 
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <name>Apache Commons HTTP Client (OSGi bundle)</name>
+  <description>An OSGi bundle for commons-httpclient ${project.version}</description>
+  <url>http://jakarta.apache.org/httpcomponents/httpclient-3.x/</url>
+  <organization>
+    <name>Apache Software Foundation</name>
+    <url>http://jakarta.apache.org/</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>Apache License</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <dependencies>
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>org.apache.commons.httpclient</Bundle-SymbolicName>
+            <Export-Package>*;-split-package:=merge-first</Export-Package>
+            <Import-Package>javax.*;resolution:=optional,*</Import-Package>
+            <Embed-Dependency>*;inline=true</Embed-Dependency>
+            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

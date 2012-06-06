@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w5.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
-  <name>XML Calabash</name>
-  <!-- <groupId>org.daisy.example.libs</groupId>
-  <artifactId>com.xmlcalabash.calabash</artifactId>
-  <version>1.0.2-94</version> -->
+  <parent>
+    <groupId>org.daisy</groupId>
+    <artifactId>daisy</artifactId>
+    <version>1</version>
+    <relativePath/>
+  </parent>
+
   <groupId>com.xmlcalabash</groupId>
   <artifactId>com.xmlcalabash</artifactId>
   <version>1.0.2-94</version>
   <packaging>jar</packaging>
+
+  <name>XML Calabash</name>
+  <description>XML Calabash is an implementation of XProc: An XML Pipeline Language.</description>
+  <url>http://xmlcalabash.com/</url>
+  <organization>
+    <name>Norman Walsh</name>
+  </organization>
+  <licenses>
+    <license>
+      <name>Common Development and Distribution License</name>
+      <url>http://www.opensource.org/licenses/CDDL-1.0</url>
+    </license>
+  </licenses>
 
   <properties>
     <!-- TODO switch to a propert tag when 1.0.3 is released with OSGi headers -->
@@ -61,7 +76,6 @@
   </dependencies>
 
   <build>
-
     <sourceDirectory>${basedir}/target/src</sourceDirectory>
 
     <extensions>
@@ -75,7 +89,6 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <!-- TODO add version -->
         <configuration>
           <excludes>
             <exclude>**</exclude>
@@ -85,7 +98,6 @@
 
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.6</version>
         <dependencies>
           <dependency>
             <groupId>com.sun</groupId>
@@ -96,7 +108,6 @@
           </dependency>
         </dependencies>
         <executions>
-
           <execution>
             <id>download</id>
             <phase>compile</phase>
@@ -117,11 +128,12 @@
                   <mapper type="regexp" from="^ndw-[^/]*/(.*)" to="\1"/>
                 </move>
                 <copy file="${basedir}/src/main/bnd/calabash.bnd" todir="${project.build.directory}/src/osgi" overwrite="true"/>
+                <property name="ant.build.javac.source" value="1.5"/>
+                <property name="ant.build.javac.target" value="1.5"/>
                 <ant dir="${project.build.directory}/src" target="jar"/>
               </target>
             </configuration>
           </execution>
-
           <execution>
             <id>copy-jar</id>
             <phase>package</phase>
@@ -136,13 +148,10 @@
               </target>
             </configuration>
           </execution>
-
         </executions>
-
       </plugin>
 
     </plugins>
-
   </build>
 
 </project>
