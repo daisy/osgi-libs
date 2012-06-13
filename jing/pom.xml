@@ -10,9 +10,9 @@
     <relativePath/>
   </parent>
 
-  <groupId>org.daisy.example.libs</groupId>
-  <artifactId>jing-osgi</artifactId>
-  <version>20091111.0.0</version>
+  <groupId>org.daisy.libs</groupId>
+  <artifactId>jing</artifactId>
+  <version>20091111.0.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Jing (OSGi bundle)</name>

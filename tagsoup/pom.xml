@@ -10,9 +10,9 @@
     <relativePath/>
   </parent>
 
-  <groupId>org.daisy.example.libs</groupId>
-  <artifactId>tagsoup-osgi</artifactId>
-  <version>1.2.1</version>
+  <groupId>org.daisy.libs</groupId>
+  <artifactId>tagsoup</artifactId>
+  <version>1.2.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>TagSoup (OSGi bundle)</name>

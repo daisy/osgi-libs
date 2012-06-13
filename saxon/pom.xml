@@ -10,9 +10,9 @@
     <relativePath/>
   </parent>
 
-  <groupId>org.daisy.example.libs</groupId>
-  <artifactId>saxon-he-osgi</artifactId>
-  <version>9.4.0</version>
+  <groupId>org.daisy.libs</groupId>
+  <artifactId>saxon-he</artifactId>
+  <version>9.4.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Saxon HE (OSGi Bundle)</name>

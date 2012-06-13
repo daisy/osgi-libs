@@ -10,9 +10,9 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.xmlcalabash</groupId>
+  <groupId>org.daisy.libs</groupId>
   <artifactId>com.xmlcalabash</artifactId>
-  <version>1.0.2-94</version>
+  <version>1.0.4-94-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>XML Calabash</name>
@@ -29,9 +29,8 @@
   </licenses>
 
   <properties>
-    <!-- TODO switch to a propert tag when 1.0.3 is released with OSGi headers -->
+    <!-- TODO switch to a proper tag when 1.0.4 is tagged -->
     <calabash.source.url>http://nodeload.github.com/ndw/xmlcalabash1/zipball/saxon94</calabash.source.url>
-    <!-- <calabash.source.url>https://github.com/ndw/xmlcalabash1/zipball/v${project.version}</calabash.source.url> -->
   </properties>
 
   <dependencies>
