@@ -44,7 +44,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <htmlparser.dist.url>http://about.validator.nu/htmlparser/htmlparser-${project.version}.zip</htmlparser.dist.url>
+    <htmlparser.version>1.3.1</htmlparser.version>
+    <htmlparser.dist.url>http://about.validator.nu/htmlparser/htmlparser-${htmlparser.version}.zip</htmlparser.dist.url>
   </properties>
 
 
@@ -102,13 +103,13 @@
             </goals>
             <configuration>
               <target>
-                <property name="htmlparser.source.zip" value="${java.io.tmpdir}/htmlparser/${project.version}/source.zip"/>
-                <property name="htmlparser.tmp.dir" value="${java.io.tmpdir}/htmlparser/${project.version}"/>
-                <mkdir dir="${java.io.tmpdir}/htmlparser/${project.version}"/>
+                <property name="htmlparser.source.zip" value="${java.io.tmpdir}/htmlparser/${htmlparser.version}/source.zip"/>
+                <property name="htmlparser.tmp.dir" value="${java.io.tmpdir}/htmlparser/${htmlparser.version}"/>
+                <mkdir dir="${java.io.tmpdir}/htmlparser/${htmlparser.version}"/>
                 <get dest="${htmlparser.tmp.dir}/source.zip" src="${htmlparser.dist.url}" usetimestamp="true"/>
                 <unzip dest="${htmlparser.tmp.dir}" src="${htmlparser.tmp.dir}/source.zip"/>
                 <move todir="${project.build.directory}/download">
-                  <fileset dir="${htmlparser.tmp.dir}/htmlparser-${project.version}">
+                  <fileset dir="${htmlparser.tmp.dir}/htmlparser-${htmlparser.version}">
                     <include name="**/*"/>
                   </fileset>
                 </move>
