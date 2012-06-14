@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>org.daisy</groupId>
     <artifactId>daisy</artifactId>
     <version>1</version>
     <relativePath/>
   </parent>
-
   <groupId>org.daisy.libs</groupId>
   <artifactId>commons-httpclient</artifactId>
   <version>3.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
-
   <name>Apache Commons HTTP Client (OSGi bundle)</name>
   <description>An OSGi bundle for commons-httpclient ${project.version}</description>
   <url>http://jakarta.apache.org/httpcomponents/httpclient-3.x/</url>
@@ -28,45 +24,95 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
-
   <dependencies>
     <dependency>
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
       <version>3.1</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-codec</groupId>
-          <artifactId>commons-codec</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
+          <unpackBundle>true</unpackBundle>
           <instructions>
             <Bundle-SymbolicName>org.apache.commons.httpclient</Bundle-SymbolicName>
-            <Export-Package>*;-split-package:=merge-first</Export-Package>
+            <Export-Package>org.apache.commons.httpclient.*;-split-package:=merge-first</Export-Package>
             <Import-Package>javax.*;resolution:=optional,*</Import-Package>
-            <Embed-Dependency>*;inline=true</Embed-Dependency>
+            <Embed-Dependency>commons-httpclient;inline=true</Embed-Dependency>
             <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
           </instructions>
         </configuration>
       </plugin>
     </plugins>
   </build>
-
+  <profiles>
+    <profile>
+      <id>sonatype-oss-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-sources</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>commons-httpclient</groupId>
+                      <artifactId>commons-httpclient</artifactId>
+                      <version>3.1</version>
+                      <classifier>sources</classifier>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>src.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadoc</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <includeDependencySources>true</includeDependencySources>
+                  <dependencySourceIncludes>
+                    <dependencySourceInclude>commons-httpclient:commons-httpclient</dependencySourceInclude>
+                  </dependencySourceIncludes>
+                  <encoding>ISO-8859-1</encoding>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
