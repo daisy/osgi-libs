@@ -13,7 +13,7 @@
 
   <modules>
     <module>calabash</module>
-    <module>http-client</module>
+    <module>commons-httpclient</module>
     <module>jing</module>
     <module>saxon</module>
     <module>servlet-api</module>
