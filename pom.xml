@@ -18,7 +18,6 @@
     <module>jing</module>
     <module>saxon</module>
     <module>servlet-api</module>
-    <module>tagsoup</module>
     <module>xerces</module>
   </modules>
 
