@@ -29,16 +29,58 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  <issueManagement>
+    <system>Saxon Community</system>
+    <url>http://dev.saxonica.com/community/projects/saxon</url>
+  </issueManagement>
+  <inceptionYear>1999</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>User List</name>
+      <post>saxon-help@lists.sourceforge.net</post>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=saxon-help</archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>mike</id>
+      <name>Michael Kay</name>
+      <email>mike@saxonica.com</email>
+    </developer>
+    <developer>
+      <id>ond1</id>
+      <name>O'Neil Delpratt</name>
+      <email>onei@saxonica.com</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <lib.groupId>net.sf.saxon</lib.groupId>
+    <lib.artifactId>Saxon-HE</lib.artifactId>
+    <lib.version>9.4</lib.version>
+  </properties>
 
   <dependencies>
     <dependency>
-      <groupId>net.sf.saxon</groupId>
-      <artifactId>Saxon-HE</artifactId>
-      <version>9.4</version>
+      <groupId>${lib.groupId}</groupId>
+      <artifactId>${lib.artifactId}</artifactId>
+      <version>${lib.version}</version>
     </dependency>
   </dependencies>
-  
+
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.3.1</version>
+          <configuration>
+            <arguments>-Pdaisy-libs-release</arguments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
@@ -48,7 +90,7 @@
             <Bundle-Name>${project.name}</Bundle-Name>
             <Project-Name>${project.name}</Project-Name>
             <Bundle-SymbolicName>net.sf.saxon.saxon-he-osgi</Bundle-SymbolicName>
-  <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-Version>${project.version}</Bundle-Version>
             <Bundle-RequiredExecutionEnvironment>J2SE-1.5</Bundle-RequiredExecutionEnvironment>
             <Main-Class>net.sf.saxon.Transform</Main-Class>
             <Export-Package>
@@ -69,5 +111,78 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>daisy-libs-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-sources-and-javadoc</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>${lib.groupId}</groupId>
+                      <artifactId>${lib.artifactId}</artifactId>
+                      <version>${lib.version}</version>
+                      <classifier>javadoc</classifier>
+                      <outputDirectory>${project.build.directory}/javadoc</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>${lib.groupId}</groupId>
+                      <artifactId>${lib.artifactId}</artifactId>
+                      <version>${lib.version}</version>
+                      <classifier>sources</classifier>
+                      <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>pack-sources-and-javadoc</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>sources.xml</descriptor>
+                    <descriptor>javadoc.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

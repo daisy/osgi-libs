@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.daisy</groupId>
     <artifactId>daisy</artifactId>
     <version>1</version>
     <relativePath/>
   </parent>
+
   <groupId>org.daisy.libs</groupId>
   <artifactId>commons-httpclient</artifactId>
   <version>3.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
+
   <name>Apache Commons HTTP Client (OSGi bundle)</name>
   <description>An OSGi bundle for commons-httpclient ${project.version}</description>
   <url>http://jakarta.apache.org/httpcomponents/httpclient-3.x/</url>
@@ -24,6 +28,7 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
+
   <dependencies>
     <dependency>
       <groupId>commons-httpclient</groupId>
@@ -31,7 +36,20 @@
       <version>3.1</version>
     </dependency>
   </dependencies>
+
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.3.1</version>
+          <configuration>
+            <arguments>-Pdaisy-libs-release</arguments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
@@ -42,16 +60,17 @@
             <Bundle-SymbolicName>org.apache.commons.httpclient</Bundle-SymbolicName>
             <Export-Package>org.apache.commons.httpclient.*;-split-package:=merge-first</Export-Package>
             <Import-Package>javax.*;resolution:=optional,*</Import-Package>
-            <Embed-Dependency>commons-httpclient;inline=true</Embed-Dependency>
-            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+            <Embed-Dependency>*;inline=true</Embed-Dependency>
+            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource,Private-Package</_removeheaders>
           </instructions>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
-      <id>sonatype-oss-release</id>
+      <id>daisy-libs-release</id>
       <build>
         <plugins>
           <plugin>
@@ -81,12 +100,13 @@
             <executions>
               <execution>
                 <id>attach-sources</id>
+                <phase>package</phase>
                 <goals>
                   <goal>single</goal>
                 </goals>
                 <configuration>
                   <descriptors>
-                    <descriptor>src.xml</descriptor>
+                    <descriptor>sources.xml</descriptor>
                   </descriptors>
                 </configuration>
               </execution>
@@ -111,8 +131,25 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
+
 </project>

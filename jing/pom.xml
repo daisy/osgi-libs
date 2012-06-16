@@ -39,56 +39,33 @@
     </developer>
   </developers>
 
+  <properties>
+    <lib.groupId>com.thaiopensource</lib.groupId>
+    <lib.artifactId>jing</lib.artifactId>
+    <lib.version>20091111</lib.version>
+  </properties>
+
   <dependencies>
     <dependency>
-      <groupId>com.thaiopensource</groupId>
-      <artifactId>jing</artifactId>
-      <version>20091111</version>
+      <groupId>${lib.groupId}</groupId>
+      <artifactId>${lib.artifactId}</artifactId>
+      <version>${lib.version}</version>
     </dependency>
-    <!-- <dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-        <version>2.9.1</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>xml-apis</groupId>
-        <artifactId>xml-apis</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-      <dependency>
-        <groupId>saxon</groupId>
-        <artifactId>saxon</artifactId>
-        <version>6.5.3</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>net.sf.saxon</groupId>
-        <artifactId>Saxon-HE</artifactId>
-        <version>9.4</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>isorelax</groupId>
-        <artifactId>isorelax</artifactId>
-        <version>20030108</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>xml-resolver</groupId>
-        <artifactId>xml-resolver</artifactId>
-        <version>1.2</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>xalan</groupId>
-        <artifactId>xalan</artifactId>
-        <version>2.7.1</version>
-        <optional>true</optional>
-      </dependency> -->
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.3.1</version>
+          <configuration>
+            <arguments>-Pdaisy-libs-release</arguments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
@@ -111,11 +88,84 @@
                             *                                        
             </Import-Package>
             <Embed-Dependency>*;inline=true</Embed-Dependency>
-            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource,Private-Package</_removeheaders>
           </instructions>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>daisy-libs-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-sources-and-javadoc</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>${lib.groupId}</groupId>
+                      <artifactId>${lib.artifactId}</artifactId>
+                      <version>${lib.version}</version>
+                      <classifier>javadoc</classifier>
+                      <outputDirectory>${project.build.directory}/javadoc</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
+                      <groupId>${lib.groupId}</groupId>
+                      <artifactId>${lib.artifactId}</artifactId>
+                      <version>${lib.version}</version>
+                      <classifier>sources</classifier>
+                      <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>pack-sources-and-javadoc</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>sources.xml</descriptor>
+                    <descriptor>javadoc.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

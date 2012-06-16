@@ -18,16 +18,44 @@
   <name>JavaServlet(TM) Specification (OSGi Bundle)</name>
   <description>An OSGi bundle for the JavaServlet(TM) Specification API</description>
   <url>http://jcp.org/aboutJava/communityprocess/mrel/jsr154/index.html</url>
+  <organization>
+    <name>Java Community ProcessSM Program</name>
+    <url>http://jcp.org/en/home/index</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>SUN LIMITED EVALUATION LICENSE</name>
+      <url>http://download.oracle.com/otndocs/jcp/servlet-2.5-mrel-eval-oth-JSpec/servlet-2.5-mrel-eval-oth-JSpec-license.html</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <lib.groupId>javax.servlet</lib.groupId>
+    <lib.artifactId>servlet-api</lib.artifactId>
+    <lib.version>2.5</lib.version>
+  </properties>
 
   <dependencies>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
+      <groupId>${lib.groupId}</groupId>
+      <artifactId>${lib.artifactId}</artifactId>
+      <version>${lib.version}</version>
     </dependency>
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.3.1</version>
+          <configuration>
+            <arguments>-Pdaisy-libs-release</arguments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
@@ -43,4 +71,89 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>daisy-libs-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-sources</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>${lib.groupId}</groupId>
+                      <artifactId>${lib.artifactId}</artifactId>
+                      <version>${lib.version}</version>
+                      <classifier>sources</classifier>
+                      <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>pack-sources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>sources.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadoc</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <includeDependencySources>true</includeDependencySources>
+                  <dependencySourceIncludes>
+                    <dependencySourceInclude>${lib.groupId}:${lib.artifactId}</dependencySourceInclude>
+                  </dependencySourceIncludes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+
 </project>
