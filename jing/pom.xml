@@ -54,13 +54,6 @@
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
@@ -92,14 +85,32 @@
 
   <profiles>
     <profile>
-      <id>daisy-libs-release</id>
+      <id>sonatype-oss-release</id>
       <build>
         <plugins>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
-                <id>unpack-sources-and-javadoc</id>
+                <id>fetch-sources-and-javadocs</id>
                 <goals>
                   <goal>unpack</goal>
                 </goals>
@@ -128,7 +139,7 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
               <execution>
-                <id>pack-sources-and-javadoc</id>
+                <id>attach-sources-and-javadoc</id>
                 <phase>package</phase>
                 <goals>
                   <goal>single</goal>
@@ -139,18 +150,6 @@
                     <descriptor>javadoc.xml</descriptor>
                   </descriptors>
                 </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
               </execution>
             </executions>
           </plugin>

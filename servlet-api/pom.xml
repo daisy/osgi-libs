@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.daisy</groupId>
     <artifactId>daisy</artifactId>
-    <version>2-SNAPSHOT</version>
+    <version>2</version>
     <relativePath/>
   </parent>
 
@@ -44,16 +44,6 @@
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <configuration>
-            <arguments>-Pdaisy-libs-release</arguments>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
@@ -72,14 +62,23 @@
 
   <profiles>
     <profile>
-      <id>daisy-libs-release</id>
+      <id>sonatype-oss-release</id>
       <build>
         <plugins>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
-                <id>unpack-sources</id>
+                <id>fetch-sources</id>
                 <goals>
                   <goal>unpack</goal>
                 </goals>
@@ -101,7 +100,7 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
               <execution>
-                <id>pack-sources</id>
+                <id>attach-sources</id>
                 <phase>package</phase>
                 <goals>
                   <goal>single</goal>
@@ -118,7 +117,7 @@
             <artifactId>maven-javadoc-plugin</artifactId>
             <executions>
               <execution>
-                <id>attach-javadoc</id>
+                <id>attach-javadocs</id>
                 <goals>
                   <goal>jar</goal>
                 </goals>
@@ -128,18 +127,6 @@
                     <dependencySourceInclude>${lib.groupId}:${lib.artifactId}</dependencySourceInclude>
                   </dependencySourceIncludes>
                 </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
               </execution>
             </executions>
           </plugin>
