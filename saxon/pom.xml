@@ -77,7 +77,7 @@
           <instructions>
             <Bundle-Name>${project.name}</Bundle-Name>
             <Project-Name>${project.name}</Project-Name>
-            <Bundle-SymbolicName>net.sf.saxon.saxon-he-osgi</Bundle-SymbolicName>
+            <Bundle-SymbolicName>net.sf.saxon.saxon-he</Bundle-SymbolicName>
             <Bundle-Version>${project.version}</Bundle-Version>
             <Bundle-RequiredExecutionEnvironment>J2SE-1.5</Bundle-RequiredExecutionEnvironment>
             <Main-Class>net.sf.saxon.Transform</Main-Class>

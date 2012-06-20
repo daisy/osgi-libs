@@ -18,6 +18,10 @@
   <name>Jing (OSGi bundle)</name>
   <description>An OSGi Bundle for Jing - tools for validating and translating RelaxNG</description>
   <url>http://code.google.com/p/jing-trang</url>
+  <organization>
+    <name>Thai Open Source Software Center Ltd</name>
+    <url>http://www.thaiopensource.com/relaxng/jing.html</url>
+  </organization>
   <licenses>
     <license>
       <name>New BSD License</name>

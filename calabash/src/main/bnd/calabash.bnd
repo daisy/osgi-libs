@@ -4,7 +4,7 @@ Implementation-Title: ${implementation.title}
 Implementation-Version: ${dist-version}
 Main-Class: com.xmlcalabash.drivers.Main
 Class-Path: ${run.classpath}
-Bundle-SymbolicName: com.xmlcalabash-94
+Bundle-SymbolicName: com.xmlcalabash
 Bundle-Name: ${implementation.title}
 Bundle-Version: ${dist-version}
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
