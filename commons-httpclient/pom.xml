@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>commons-httpclient</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Apache Commons HTTP Client (OSGi bundle)</name>
@@ -132,9 +132,4 @@
       </build>
     </profile>
   </profiles>
-
-
-  <scm>
-    <tag>commons-httpclient-3.1.0</tag>
-  </scm>
 </project>
