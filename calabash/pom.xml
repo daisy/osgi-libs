@@ -6,13 +6,13 @@
   <parent>
     <groupId>org.daisy</groupId>
     <artifactId>daisy</artifactId>
-    <version>2-SNAPSHOT</version>
-    <relativePath/>
+    <version>2</version>
+    <relativePath />
   </parent>
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>com.xmlcalabash</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
 
   <name>XML Calabash</name>
@@ -119,21 +119,21 @@
             </goals>
             <configuration>
               <target>
-                <property name="calabash.source.zip" value="${java.io.tmpdir}/calabash/${project.version}/source.zip"/>
-                <property name="calabash.tmp.dir" value="${java.io.tmpdir}/calabash/${project.version}"/>
-                <mkdir dir="${java.io.tmpdir}/calabash/${project.version}"/>
-                <get dest="${calabash.tmp.dir}/source.zip" src="${calabash.source.url}" usetimestamp="true"/>
-                <unzip dest="${calabash.tmp.dir}" src="${calabash.tmp.dir}/source.zip"/>
+                <property name="calabash.source.zip" value="${java.io.tmpdir}/calabash/${project.version}/source.zip" />
+                <property name="calabash.tmp.dir" value="${java.io.tmpdir}/calabash/${project.version}" />
+                <mkdir dir="${java.io.tmpdir}/calabash/${project.version}" />
+                <get dest="${calabash.tmp.dir}/source.zip" src="${calabash.source.url}" usetimestamp="true" />
+                <unzip dest="${calabash.tmp.dir}" src="${calabash.tmp.dir}/source.zip" />
                 <move todir="${project.build.directory}/src">
                   <fileset dir="${calabash.tmp.dir}">
-                    <include name="ndw-*/**/*"/>
+                    <include name="ndw-*/**/*" />
                   </fileset>
-                  <mapper type="regexp" from="^ndw-[^/]*/(.*)" to="\1"/>
+                  <mapper type="regexp" from="^ndw-[^/]*/(.*)" to="\1" />
                 </move>
-                <copy file="${basedir}/src/main/bnd/calabash.bnd" todir="${project.build.directory}/src/osgi" overwrite="true"/>
-                <property name="ant.build.javac.source" value="1.5"/>
-                <property name="ant.build.javac.target" value="1.5"/>
-                <ant dir="${project.build.directory}/src" target="jar"/>
+                <copy file="${basedir}/src/main/bnd/calabash.bnd" todir="${project.build.directory}/src/osgi" overwrite="true" />
+                <property name="ant.build.javac.source" value="1.5" />
+                <property name="ant.build.javac.target" value="1.5" />
+                <ant dir="${project.build.directory}/src" target="jar" />
               </target>
             </configuration>
           </execution>
@@ -145,9 +145,7 @@
             </goals>
             <configuration>
               <target>
-                <copy file="${project.build.directory}/src/calabash.jar"
-                  tofile="${project.build.directory}/${project.artifactId}-${project.version}.${project.packaging}"
-                  overwrite="true" verbose="true" />
+                <copy file="${project.build.directory}/src/calabash.jar" tofile="${project.build.directory}/${project.artifactId}-${project.version}.${project.packaging}" overwrite="true" verbose="true" />
               </target>
             </configuration>
           </execution>
@@ -193,4 +191,8 @@
   </profiles>
 
 
+
+  <scm>
+    <tag>com.xmlcalabash-1.0.3</tag>
+  </scm>
 </project>
