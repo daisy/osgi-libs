@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>jing</artifactId>
-  <version>20091111.0.0</version>
+  <version>20091111.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Jing (OSGi bundle)</name>
@@ -31,7 +31,7 @@
   <scm>
     <connection>http://jing-trang.googlecode.com/svn/trunk/</connection>
     <url>http://code.google.com/p/jing-trang/source/browse/</url>
-    <tag>jing-20091111.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
   <developers>
     <developer>
