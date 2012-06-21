@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.daisy.libs</groupId>
+    <artifactId>brailleutils</artifactId>
+    <version>1.2.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>brailleutils-catalog</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Braille Utils - Catalog</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.daisy.libs</groupId>
+      <artifactId>brailleutils-core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://brailleutils.googlecode.com/svn/trunk/braille/catalog</connection>
+  </scm>
+
+  <build>
+    <sourceDirectory>${basedir}/target/sources</sourceDirectory>
+    <resources>
+      <resource>
+        <targetPath>META-INF/services</targetPath>
+        <filtering>false</filtering>
+        <directory>${basedir}/target/sources/META-INF/services</directory>
+      </resource>
+    </resources>    
+    <plugins>
+      <plugin>
+        <artifactId>maven-scm-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>checkout</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>checkout</goal>
+            </goals>
+            <configuration>
+              <connectionType>connection</connectionType>
+              <checkoutDirectory>${basedir}/target/sources</checkoutDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <SPI-Provider>javax.imageio.spi.ServiceRegistry</SPI-Provider>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
