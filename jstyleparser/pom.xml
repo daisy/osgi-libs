@@ -102,6 +102,26 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-patch-plugin</artifactId>
+        <version>1.1.1</version>
+        <configuration>
+          <patchDirectory>src/main/patches</patchDirectory>
+          <patches>
+            <patch>saxon.patch</patch>
+          </patches>
+        </configuration>
+        <executions>
+          <execution>
+            <id>patch</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>apply</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
       </plugin>
