@@ -14,7 +14,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>jstyleparser</artifactId>
-  <version>1.7.0</version>
+  <version>1.7.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>jStyleParser</name>
@@ -79,7 +79,7 @@
   </dependencies>
 
   <scm>
-    <connection>scm:svn:https://cssbox.svn.sourceforge.net/svnroot/cssbox/jstyleparser/tags/1.7/src/cz</connection>
+    <connection>scm:svn:http://cssbox.svn.sourceforge.net/svnroot/cssbox/jstyleparser/tags/1.7/src/cz</connection>
   </scm>
 
   <build>
@@ -87,6 +87,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-scm-plugin</artifactId>
+        <version>1.7</version><!-- TODO remove when daisy-parent declares it in pluginManagement -->
         <executions>
           <execution>
             <id>checkout</id>
