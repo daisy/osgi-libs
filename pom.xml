@@ -24,6 +24,7 @@
     <module>jing</module>
     <module>saxon</module>
     <module>servlet-api</module>
+    <module>jsslutils</module>
   </modules>
 
 </project>
