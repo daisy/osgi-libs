@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.daisy.libs</groupId>
   <artifactId>jsslutils</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>1.0.7</version>
   <packaging>bundle</packaging>
   <name>jSSLutils</name>
   <url>http://www.jsslutils.org/</url>
@@ -23,7 +23,7 @@
   </licenses>
   <scm>
     <connection>scm:svn:http://jsslutils.googlecode.com/svn/tags/jsslutils-1.0.7</connection>
-    <tag>HEAD</tag>
+    <tag>jsslutils-1.0.7</tag>
     <url>http://code.google.com/p/jsslutils/source/browse/tags/jsslutils-1.0.7</url>
   </scm>
   <developers>
