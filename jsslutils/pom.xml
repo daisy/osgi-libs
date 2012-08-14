@@ -5,11 +5,11 @@
     <groupId>org.daisy</groupId>
     <artifactId>daisy</artifactId>
     <version>2</version>
-    <relativePath/>
+    <relativePath />
   </parent>
   <groupId>org.daisy.libs</groupId>
   <artifactId>jsslutils</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.7-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>jSSLutils</name>
   <url>http://www.jsslutils.org/</url>
@@ -22,10 +22,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:http://jsslutils.googlecode.com/svn/trunk</connection>
-    <developerConnection>scm:svn:https://jsslutils.googlecode.com/svn/trunk</developerConnection>
+    <connection>scm:svn:http://jsslutils.googlecode.com/svn/tags/jsslutils-1.0.7</connection>
     <tag>HEAD</tag>
-    <url>http://code.google.com/p/jsslutils/source/browse</url>
+    <url>http://code.google.com/p/jsslutils/source/browse/tags/jsslutils-1.0.7</url>
   </scm>
   <developers>
     <developer>
