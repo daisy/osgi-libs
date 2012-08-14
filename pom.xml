@@ -22,6 +22,7 @@
     <module>calabash</module>
     <module>commons-httpclient</module>
     <module>jing</module>
+    <module>jsslutils</module>
     <module>saxon</module>
     <module>servlet-api</module>
   </modules>
