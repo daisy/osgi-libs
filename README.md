@@ -5,9 +5,9 @@ This project contains a set of Maven POM files used to build OSGi-ready and Mave
 
  - Apache Commons HTTP Client
  - Jing
+ - Jsslutils
  - Saxon HE
  - XML Calabash
- - jsslutils
 
 
 The following libraries were once maintained and have been removed since they're no-longer used:
