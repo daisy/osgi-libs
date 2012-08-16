@@ -36,6 +36,7 @@
         </url>
   </scm>
   <developers>
+	  <!--None present in the original pom -->
   </developers>
   <properties>
     <lib.groupId>mysql</lib.groupId>
