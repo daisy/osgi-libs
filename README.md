@@ -6,6 +6,7 @@ This project contains a set of Maven POM files used to build OSGi-ready and Mave
  - Apache Commons HTTP Client
  - Jing
  - Jsslutils
+ - MySql Connector
  - Saxon HE
  - XML Calabash
 

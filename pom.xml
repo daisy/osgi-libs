@@ -23,6 +23,7 @@
     <module>commons-httpclient</module>
     <module>jing</module>
     <module>jsslutils</module>
+    <module>mysql</module>
     <module>saxon</module>
     <module>servlet-api</module>
   </modules>
