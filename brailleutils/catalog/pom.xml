@@ -80,6 +80,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-scm-plugin</artifactId>
+        <version>1.7</version><!-- TODO remove when daisy-parent declares it in pluginManagement -->
         <executions>
           <execution>
             <id>checkout</id>
