@@ -109,6 +109,7 @@
           <patchDirectory>src/main/patches</patchDirectory>
           <patches>
             <patch>saxon.patch</patch>
+            <patch>fixes.patch</patch>
           </patches>
         </configuration>
         <executions>
