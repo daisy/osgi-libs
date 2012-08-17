@@ -110,6 +110,8 @@
           <patches>
             <patch>saxon.patch</patch>
             <patch>fixes.patch</patch>
+            <patch>new_features.patch</patch>
+            <patch>antlr_generated.patch</patch>
           </patches>
         </configuration>
         <executions>
