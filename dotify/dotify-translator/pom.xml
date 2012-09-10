@@ -89,6 +89,8 @@
             </goals>
             <configuration>
               <connectionType>connection</connectionType>
+              <scmVersion>151</scmVersion>
+              <scmVersionType>revision</scmVersionType>
               <checkoutDirectory>${basedir}/target/sources</checkoutDirectory>
             </configuration>
           </execution>
@@ -100,7 +102,7 @@
               <goal>checkout</goal>
             </goals>
             <configuration>
-              <connectionUrl>scm:svn:http://daisymfc.svn.sourceforge.net/svnroot/daisymfc/trunk/dmfc/src/org/daisy/util/i18n</connectionUrl>
+              <connectionUrl>scm:svn:http://daisymfc.svn.sourceforge.net/svnroot/daisymfc/tags/v20100125/src/org/daisy/util/i18n</connectionUrl>
               <checkoutDirectory>${basedir}/target/sources/org/daisy/util/i18n</checkoutDirectory>
               <includes>
                 CharUtils.java,
