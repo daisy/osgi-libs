@@ -30,11 +30,46 @@
   <developers>
     <developer>
       <name>David Tolpin</name>
+      <roles>
+        <role>Author</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Joel Håkansson</name>
+      <organization>TPB - Talboks- och punktskriftsbiblioteket</organization>
+      <organizationUrl>http://www.tpb.se/</organizationUrl>
+      <roles>
+        <role>Maintainer</role>
+      </roles>
     </developer>
   </developers>
 
+  <scm>
+    <connection>scm:svn:http://texhyphj.googlecode.com/svn/trunk/texhyphj/src/</connection>
+  </scm>
+
   <build>
+    <sourceDirectory>${basedir}/target/sources</sourceDirectory>
     <plugins>
+      <plugin>
+        <artifactId>maven-scm-plugin</artifactId>
+        <version>1.7</version><!-- TODO remove when daisy-parent declares it in pluginManagement -->
+        <executions>
+          <execution>
+            <id>checkout</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>checkout</goal>
+            </goals>
+            <configuration>
+              <connectionType>connection</connectionType>
+              <scmVersion>3</scmVersion>
+              <scmVersionType>revision</scmVersionType>
+              <checkoutDirectory>${basedir}/target/sources</checkoutDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
