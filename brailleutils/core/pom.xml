@@ -82,11 +82,15 @@
     <sourceDirectory>${basedir}/target/sources</sourceDirectory>
     <resources>
       <resource>
-        <targetPath>META-INF/services</targetPath>
+        <directory>${basedir}/target/sources</directory>
         <filtering>false</filtering>
-        <directory>${basedir}/target/sources/META-INF/services</directory>
+        <includes>
+          <include>META-INF/services/*</include>
+          <include>**/*.xsl</include>
+          <include>**/*.rng</include>
+        </includes>
       </resource>
-    </resources>    
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-scm-plugin</artifactId>
