@@ -19,13 +19,18 @@
   <description>Aggregator POM to build all the DAISY Pipeline 2</description>
 
   <modules>
+    <module>brailleutils/core</module>
+    <module>brailleutils/catalog</module>
     <module>calabash</module>
     <module>commons-httpclient</module>
+    <module>dotify/dotify-translator</module>
     <module>jing</module>
     <module>jsslutils</module>
+    <module>jstyleparser</module>
     <module>mysql</module>
     <module>saxon</module>
     <module>servlet-api</module>
+    <module>texhyphj</module>
   </modules>
 
 </project>
