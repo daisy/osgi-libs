@@ -86,7 +86,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-scm-plugin</artifactId>
-        <version>1.7</version><!-- TODO remove when daisy-parent declares it in pluginManagement -->
+        <version>1.7</version>
         <executions>
           <execution>
             <id>checkout</id>
@@ -118,6 +118,7 @@
             <patch>fixes.patch</patch>
             <patch>new_features.patch</patch>
             <patch>uriresolver.patch</patch>
+            <patch>paged_media.patch</patch>
           </patches>
         </configuration>
         <executions>
