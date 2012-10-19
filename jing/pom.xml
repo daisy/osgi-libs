@@ -12,11 +12,11 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>jing</artifactId>
-  <version>20091111.0.1-SNAPSHOT</version>
-  <packaging>bundle</packaging>
+  <version>20120724.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-  <name>Jing (OSGi bundle)</name>
-  <description>An OSGi Bundle for Jing - tools for validating and translating RelaxNG</description>
+  <name>Jing</name>
+  <description>Jing - tool for validating RelaxNG - (OSGi-compatible version)</description>
   <url>http://code.google.com/p/jing-trang</url>
   <organization>
     <name>Thai Open Source Software Center Ltd</name>
@@ -29,7 +29,7 @@
     </license>
   </licenses>
   <scm>
-    <connection>http://jing-trang.googlecode.com/svn/trunk/</connection>
+    <connection>scm:svn:http://jing-trang.googlecode.com/svn/trunk/</connection>
     <url>http://code.google.com/p/jing-trang/source/browse/</url>
     <tag>HEAD</tag>
   </scm>
@@ -43,48 +43,162 @@
       </roles>
     </developer>
   </developers>
-
-  <properties>
-    <lib.groupId>com.thaiopensource</lib.groupId>
-    <lib.artifactId>jing</lib.artifactId>
-    <lib.version>20091111</lib.version>
-  </properties>
-
+  
   <dependencies>
-    <dependency>
-      <groupId>${lib.groupId}</groupId>
-      <artifactId>${lib.artifactId}</artifactId>
-      <version>${lib.version}</version>
-    </dependency>
-  </dependencies>
-
+      <dependency>
+        <groupId>isorelax</groupId>
+        <artifactId>isorelax</artifactId>
+        <version>20030108</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>net.sf.saxon</groupId>
+        <artifactId>saxon</artifactId>
+        <version>8.7</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.ant</groupId>
+        <artifactId>ant</artifactId>
+        <version>1.7.1</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>saxon</groupId>
+        <artifactId>saxon</artifactId>
+        <version>6.5.3</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>xalan</groupId>
+        <artifactId>xalan</artifactId>
+        <version>2.7.1</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+        <version>2.10.0</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>xml-apis</groupId>
+        <artifactId>xml-apis</artifactId>
+        <version>1.4.01</version>
+      </dependency>
+      <dependency>
+        <groupId>xml-resolver</groupId>
+        <artifactId>xml-resolver</artifactId>
+        <version>1.2</version>
+        <optional>true</optional>
+      </dependency>
+    </dependencies>
+    
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>com.thaiopensource.jing</Bundle-SymbolicName>
-            <Export-Package>org.relaxng.datatype,
-                            org.relaxng.datatype.helpers,
-                            com.thaiopensource.*
-            </Export-Package>
-            <Import-Package>com.icl.saxon;resolution:=optional,
-                            net.sf.saxon;resolution:=optional,
-                            org.apache.tools.ant.*;resolution:=optional,
-                            org.apache.xalan.*;resolution:=optional,
-                            org.apache.xerces.*;resolution:=optional,
-                            org.apache.xml.resolver.*;resolution:=optional,
-                            org.apache.tools.ant.*;resolution:=optional,
-                            org.iso_relax.*;resolution:=optional,
-                            *                                        
-            </Import-Package>
-            <Embed-Dependency>*;inline=true</Embed-Dependency>
-            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource,Private-Package</_removeheaders>
-          </instructions>
-        </configuration>
-      </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <excludes>
+              <exclude>**</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>1.7</version>
+          <executions>
+            <execution>
+              <id>checkout</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>checkout</goal>
+              </goals>
+              <configuration>
+                <scmVersion>2360</scmVersion>
+                <scmVersionType>revision</scmVersionType>
+                <skipCheckoutIfExists>true</skipCheckoutIfExists>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.2.1</version>
+          <executions>
+            <execution>
+              <id>ant-compile</id>
+              <phase>compile</phase>  
+              <goals>
+                <goal>exec</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <executable>${project.build.directory}/checkout/ant</executable>
+            <workingDirectory>${project.build.directory}/checkout</workingDirectory>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>unjar</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <target>
+                    <unzip src="${project.build.directory}/checkout/build/jing.jar" dest="${project.build.directory}/classes"/> 
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
+          <executions>
+            <execution>
+              <id>bundle-manifest</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>manifest</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <instructions>
+                <Bundle-SymbolicName>com.thaiopensource.jing</Bundle-SymbolicName>
+                <Export-Package>org.relaxng.datatype,
+                                org.relaxng.datatype.helpers,
+                                com.thaiopensource.*
+                </Export-Package>
+                <Import-Package><!-- com.icl.saxon;resolution:=optional,
+                                                net.sf.saxon;resolution:=optional,
+                                                org.apache.tools.ant.*;resolution:=optional,
+                                                org.apache.xalan.*;resolution:=optional,
+                                                org.apache.xerces.*;resolution:=optional,
+                                                org.apache.xml.resolver.*;resolution:=optional,
+                                                org.apache.tools.ant.*;resolution:=optional,
+                                                org.iso_relax.*;resolution:=optional, -->
+                                *                                        
+                </Import-Package>
+                <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Private-Package</_removeheaders>
+            </instructions>
+          </configuration>
+        </plugin>
+        <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                </archive>
+            </configuration>
+        </plugin>
     </plugins>
   </build>
 
@@ -112,30 +226,40 @@
             </executions>
           </plugin>
           <plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version>
             <executions>
               <execution>
-                <id>fetch-sources-and-javadocs</id>
+                <id>ant-dist</id>
+                <phase>compile</phase>  
                 <goals>
-                  <goal>unpack</goal>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>${project.build.directory}/checkout/ant</executable>
+              <commandlineArgs>jing-dist</commandlineArgs>
+              <workingDirectory>${project.build.directory}/checkout</workingDirectory>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-src-javadoc</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>run</goal>
                 </goals>
                 <configuration>
-                  <artifactItems>
-                    <artifactItem>
-                      <groupId>${lib.groupId}</groupId>
-                      <artifactId>${lib.artifactId}</artifactId>
-                      <version>${lib.version}</version>
-                      <classifier>javadoc</classifier>
-                      <outputDirectory>${project.build.directory}/javadoc</outputDirectory>
-                    </artifactItem>
-                    <artifactItem>
-                      <groupId>${lib.groupId}</groupId>
-                      <artifactId>${lib.artifactId}</artifactId>
-                      <version>${lib.version}</version>
-                      <classifier>sources</classifier>
-                      <outputDirectory>${project.build.directory}/sources</outputDirectory>
-                    </artifactItem>
-                  </artifactItems>
+                  <target>
+                      <unzip src="${project.build.directory}/checkout/build/mod/jing/src.zip" dest="${project.build.directory}/sources"/> 
+                      <copy todir="${project.build.directory}/javadoc">
+                          <fileset dir="${project.build.directory}/checkout/build/api/jing"/>
+                      </copy>
+                  </target>
                 </configuration>
               </execution>
             </executions>
