@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>jing</artifactId>
-  <version>20120724.0.0-SNAPSHOT</version>
+  <version>20120724.0.0</version>
   <packaging>jar</packaging>
 
   <name>Jing</name>
@@ -31,7 +31,7 @@
   <scm>
     <connection>scm:svn:http://jing-trang.googlecode.com/svn/trunk/</connection>
     <url>http://code.google.com/p/jing-trang/source/browse/</url>
-    <tag>HEAD</tag>
+    <tag>jing-20120724.0.0</tag>
   </scm>
   <developers>
     <developer>
@@ -151,7 +151,7 @@
               </goals>
               <configuration>
                 <target>
-                    <unzip src="${project.build.directory}/checkout/build/jing.jar" dest="${project.build.directory}/classes"/> 
+                    <unzip src="${project.build.directory}/checkout/build/jing.jar" dest="${project.build.directory}/classes" /> 
                 </target>
               </configuration>
             </execution>
@@ -255,9 +255,9 @@
                 </goals>
                 <configuration>
                   <target>
-                      <unzip src="${project.build.directory}/checkout/build/mod/jing/src.zip" dest="${project.build.directory}/sources"/> 
+                      <unzip src="${project.build.directory}/checkout/build/mod/jing/src.zip" dest="${project.build.directory}/sources" /> 
                       <copy todir="${project.build.directory}/javadoc">
-                          <fileset dir="${project.build.directory}/checkout/build/api/jing"/>
+                          <fileset dir="${project.build.directory}/checkout/build/api/jing" />
                       </copy>
                   </target>
                 </configuration>
