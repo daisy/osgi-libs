@@ -15,8 +15,8 @@
   <version>20120724.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Jing (OSGi bundle)</name>
-  <description>Jing - tool for validating RelaxNG</description>
+  <name>Jing</name>
+  <description>Jing - tool for validating RelaxNG - (OSGi-compatible version)</description>
   <url>http://code.google.com/p/jing-trang</url>
   <organization>
     <name>Thai Open Source Software Center Ltd</name>
@@ -128,7 +128,7 @@
           <version>1.2.1</version>
           <executions>
             <execution>
-              <id>compile</id>
+              <id>ant-compile</id>
               <phase>compile</phase>  
               <goals>
                 <goal>exec</goal>
@@ -231,7 +231,7 @@
             <version>1.2.1</version>
             <executions>
               <execution>
-                <id>compile</id>
+                <id>ant-dist</id>
                 <phase>compile</phase>  
                 <goals>
                   <goal>exec</goal>
@@ -248,7 +248,7 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>unjar</id>
+                <id>copy-src-javadoc</id>
                 <phase>compile</phase>
                 <goals>
                   <goal>run</goal>
