@@ -240,7 +240,7 @@
             </executions>
             <configuration>
               <executable>${project.build.directory}/checkout/ant</executable>
-              <commandlineArgs>srczip javadoc</commandlineArgs>
+              <commandlineArgs>jing-dist</commandlineArgs>
               <workingDirectory>${project.build.directory}/checkout</workingDirectory>
             </configuration>
           </plugin>
