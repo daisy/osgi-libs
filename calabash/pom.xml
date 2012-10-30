@@ -131,6 +131,8 @@
                   <mapper type="regexp" from="^ndw-[^/]*/(.*)" to="\1" />
                 </move>
                 <copy file="${basedir}/src/main/bnd/calabash.bnd" todir="${project.build.directory}/src/osgi" overwrite="true" />
+		<patch patchfile="${basedir}/src/main/patch/com/xmlcalabash/core/XProcConfiguration.java.patch" originalfile="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java" destfile="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java.patched" />
+                <move file="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java.patched" tofile="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java" overwrite="true" />
                 <property name="ant.build.javac.source" value="1.5" />
                 <property name="ant.build.javac.target" value="1.5" />
                 <ant dir="${project.build.directory}/src" target="jar" />
