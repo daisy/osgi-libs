@@ -43,9 +43,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.daisy.libs</groupId>
+      <groupId>se.tpb</groupId>
       <artifactId>texhyphj</artifactId>
-      <version>1.1</version>
+      <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.ibm.icu</groupId>
@@ -64,10 +64,13 @@
   </scm>
 
   <build>
-    <sourceDirectory>${basedir}/target/sources</sourceDirectory>
+    <sourceDirectory>target/sources</sourceDirectory>
     <resources>
       <resource>
-        <directory>${basedir}/target/sources</directory>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>target/sources</directory>
         <filtering>false</filtering>
         <includes>
           <include>META-INF/services/*</include>
@@ -118,14 +121,25 @@
         <configuration>
           <instructions>
             <Export-Package>org.daisy.dotify.text,org.daisy.dotify.translator,org.daisy.dotify.hyphenator</Export-Package>
-            <Import-Package>!org.apache.xerces.util,*</Import-Package>
+            <Import-Package>!org.apache.xerces.util,*,org.daisy.pipeline.braille.tex</Import-Package>
             <SPI-Provider>javax.imageio.spi.ServiceRegistry</SPI-Provider>
             <SPI-Consumer>javax.imageio.spi.ServiceRegistry#lookupProviders(java.lang.Class)</SPI-Consumer>
+            <Service-Component>OSGI-INF/hyphenation-tables.xml</Service-Component>
             <_removeheaders>Private-Package,Include-Resource</_removeheaders>
           </instructions>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+  <repositories>
+    <!-- Remove when texhyphj is in sonatype-nexus-snapshots-->
+    <repository>
+      <id>bertfrees-github-snapshots</id>
+      <url>http://bertfrees.github.com/snapshots</url>
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
 
 </project>

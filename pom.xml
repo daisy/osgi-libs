@@ -30,7 +30,6 @@
     <module>mysql</module>
     <module>saxon</module>
     <module>servlet-api</module>
-    <module>texhyphj</module>
   </modules>
 
 </project>
