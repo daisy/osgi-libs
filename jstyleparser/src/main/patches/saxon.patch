@@ -42,7 +42,7 @@ Index: cz/vutbr/web/domassign/SaxonTraversal.java
 ===================================================================
 --- cz/vutbr/web/domassign/SaxonTraversal.java	(revision 0)
 +++ cz/vutbr/web/domassign/SaxonTraversal.java	(revision 0)
-@@ -0,0 +1,132 @@
+@@ -0,0 +1,125 @@
 +package cz.vutbr.web.domassign;
 +
 +import org.w3c.dom.DOMException;
@@ -53,39 +53,38 @@ Index: cz/vutbr/web/domassign/SaxonTraversal.java
 +
 +public abstract class SaxonTraversal<T> extends Traversal<T> {
 +
-+    public SaxonTraversal(Document doc, Object source, int whatToShow) {
-+    	super(null, source);
-+    	if (whatToShow != NodeFilter.SHOW_ELEMENT) {
++	public SaxonTraversal(Document doc, Object source, int whatToShow) {
++		super(null, source);
++		if (whatToShow != NodeFilter.SHOW_ELEMENT)
 +			throw new IllegalArgumentException(
 +				"Only supported value for argument whatToShow is NodeFilter.SHOW_ELEMENT");
-+		}
-+    	walker = new SaxonTreeWalker(doc.getDocumentElement());
-+    }
-+    
-+    private class SaxonTreeWalker implements TreeWalker {
++		walker = new SaxonTreeWalker(doc.getDocumentElement());
++	}
++	
++	private class SaxonTreeWalker implements TreeWalker {
 +
-+    	private final Node root;
-+    	private Node current;
-+    	
-+    	public SaxonTreeWalker(Node root) {
-+    		this.root = root;
-+    		current = root;
-+    	}
-+    	
++		private final Node root;
++		private Node current;
++		
++		public SaxonTreeWalker(Node root) {
++			this.root = root;
++			current = null;
++		}
++		
 +		@Override
 +		public Node firstChild() {
-+			Node firstChild = current.getFirstChild();
-+			while (firstChild != null && firstChild.getNodeType() != Node.ELEMENT_NODE) {
++			Node firstChild = getCurrentNode().getFirstChild();
++			while (firstChild != null && firstChild.getNodeType() != Node.ELEMENT_NODE)
 +				firstChild = firstChild.getNextSibling();
-+			}
-+			if (firstChild != null) {
++			if (firstChild != null)
 +				current = firstChild;
-+			}
 +			return firstChild;
 +		}
 +
 +		@Override
 +		public Node getCurrentNode() {
++			if (current == null)
++				current = root;
 +			return current;
 +		}
 +
@@ -116,35 +115,32 @@ Index: cz/vutbr/web/domassign/SaxonTraversal.java
 +
 +		@Override
 +		public Node nextNode() {
-+			if (firstChild() != null) {
++			if (current == null)
++				return getCurrentNode();
++			if (firstChild() != null)
 +				return current;
-+			}
 +			do {
-+				if (nextSibling() != null) {
-+					return current;
-+				}
-+			} while(parentNode() != null);
++				if (nextSibling() != null)
++					return current; }
++			while(parentNode() != null);
 +			return null;
 +		}
 +
 +		@Override
 +		public Node nextSibling() {
-+			Node nextSibling = current.getNextSibling();
-+			while (nextSibling != null && nextSibling.getNodeType() != Node.ELEMENT_NODE) {
++			Node nextSibling = getCurrentNode().getNextSibling();
++			while (nextSibling != null && nextSibling.getNodeType() != Node.ELEMENT_NODE)
 +				nextSibling = nextSibling.getNextSibling();
-+			}
-+			if (nextSibling != null) {
++			if (nextSibling != null)
 +				current = nextSibling;
-+			}
 +			return nextSibling;
 +		}
 +
 +		@Override
 +		public Node parentNode() {
-+			Node parent = current.getParentNode();
-+			if (parent == null || parent.getNodeType() == Node.DOCUMENT_NODE) {
++			Node parent = getCurrentNode().getParentNode();
++			if (parent == null || parent.getNodeType() == Node.DOCUMENT_NODE)
 +				return null;
-+			}
 +			current = parent;
 +			return parent;
 +		}
@@ -156,24 +152,21 @@ Index: cz/vutbr/web/domassign/SaxonTraversal.java
 +
 +		@Override
 +		public Node previousSibling() {
-+			Node previousSibling = current.getPreviousSibling();
-+			while (previousSibling != null && previousSibling.getNodeType() != Node.ELEMENT_NODE) {
++			Node previousSibling = getCurrentNode().getPreviousSibling();
++			while (previousSibling != null && previousSibling.getNodeType() != Node.ELEMENT_NODE)
 +				previousSibling = previousSibling.getPreviousSibling();
-+			}
-+			if (previousSibling != null) {
++			if (previousSibling != null)
 +				current = previousSibling;
-+			}
 +			return previousSibling;
 +		}
 +
 +		@Override
 +		public void setCurrentNode(Node current) throws DOMException {
-+			if (current == null) {
++			if (current == null)
 +				throw new DOMException(DOMException.NOT_SUPPORTED_ERR, null);
-+			}
 +			this.current = current;
 +		}
-+    }
++	}
 +}
 Index: cz/vutbr/web/css/CSSFactory.java
 ===================================================================
