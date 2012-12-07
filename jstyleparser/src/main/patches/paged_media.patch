@@ -335,9 +335,9 @@ Index: cz/vutbr/web/csskit/antlr/CSS.g
 +page
 +	: PAGE S* (( IDENT | IDENT page_pseudo | page_pseudo) S*) ?
 +		LCURLY S*
-+		(declaration | margin_rule)? (SEMICOLON S* (declaration | margin_rule)? )*
++		declarations margin_rule*
 +		RCURLY
-+		-> ^(PAGE IDENT? page_pseudo? ^(SET declaration*) ^(SET margin_rule*))
++		-> ^(PAGE IDENT? page_pseudo? declarations ^(SET margin_rule*))
 +	;
 +
 +page_pseudo
