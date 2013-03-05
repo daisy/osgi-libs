@@ -7,12 +7,12 @@
   </formats>
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/src/src</directory>
+      <directory>${project.build.directory}/calabash/src</directory>
       <outputDirectory>/</outputDirectory>
       <useDefaultExcludes>true</useDefaultExcludes>
     </fileSet>
     <fileSet>
-      <directory>${project.build.directory}/src/resources</directory>
+      <directory>${project.build.directory}/calabash/resources</directory>
       <outputDirectory>/</outputDirectory>
       <useDefaultExcludes>true</useDefaultExcludes>
     </fileSet>

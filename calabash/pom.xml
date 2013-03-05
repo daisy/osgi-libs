@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>com.xmlcalabash</artifactId>
-  <version>1.0.3-p1-SNAPSHOT</version>
+  <version>1.0.8-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>XML Calabash</name>
@@ -29,17 +29,14 @@
   </licenses>
 
   <properties>
-    <!-- TODO switch to a proper tag when 1.0.4 is tagged -->
-    <!-- <calabash.source.url>http://nodeload.github.com/ndw/xmlcalabash1/zipball/saxon94</calabash.source.url> -->
-    <calabash.source.url>http://github.com/ndw/xmlcalabash1/zipball/saxon94</calabash.source.url>
-
+    <calabash.source.url>https://nodeload.github.com/ndw/xmlcalabash1/zip/v1.0.8.94</calabash.source.url>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>net.sf.saxon</groupId>
       <artifactId>Saxon-HE</artifactId>
-      <version>9.4</version>
+      <version>9.4.0.7</version>
     </dependency>
     <dependency>
       <groupId>commons-httpclient</groupId>
@@ -89,7 +86,7 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>${basedir}/target/src/src</sourceDirectory>
+    <sourceDirectory>${basedir}/target/calabash/src</sourceDirectory>
 
     <extensions>
       <extension>
@@ -119,23 +116,19 @@
             </goals>
             <configuration>
               <target>
-                <property name="calabash.source.zip" value="${java.io.tmpdir}/calabash/${project.version}/source.zip" />
                 <property name="calabash.tmp.dir" value="${java.io.tmpdir}/calabash/${project.version}" />
-                <mkdir dir="${java.io.tmpdir}/calabash/${project.version}" />
-                <get dest="${calabash.tmp.dir}/source.zip" src="${calabash.source.url}" usetimestamp="true" />
+                <mkdir dir="${calabash.tmp.dir}"/>
+                <get dest="${calabash.tmp.dir}/source.zip" src="${calabash.source.url}" usetimestamp="true" skipexisting="true"/>
                 <unzip dest="${calabash.tmp.dir}" src="${calabash.tmp.dir}/source.zip" />
-                <move todir="${project.build.directory}/src">
+                <move todir="${project.build.directory}/calabash">
                   <fileset dir="${calabash.tmp.dir}">
-                    <include name="ndw-*/**/*" />
+                    <include name="xmlcalabash1-*/**/*" />
                   </fileset>
-                  <mapper type="regexp" from="^ndw-[^/]*/(.*)" to="\1" />
+                  <mapper type="regexp" from="^xmlcalabash1-[^/]*/(.*)" to="\1" />
                 </move>
-                <copy file="${basedir}/src/main/bnd/calabash.bnd" todir="${project.build.directory}/src/osgi" overwrite="true" />
-		<patch patchfile="${basedir}/src/main/patch/com/xmlcalabash/core/XProcConfiguration.java.patch" originalfile="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java" destfile="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java.patched" />
-                <move file="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java.patched" tofile="${project.build.directory}/src/src/com/xmlcalabash/core/XProcConfiguration.java" overwrite="true" />
                 <property name="ant.build.javac.source" value="1.5" />
                 <property name="ant.build.javac.target" value="1.5" />
-                <ant dir="${project.build.directory}/src" target="jar" />
+                <ant dir="${project.build.directory}/calabash" target="jar" />
               </target>
             </configuration>
           </execution>
@@ -147,7 +140,7 @@
             </goals>
             <configuration>
               <target>
-                <copy file="${project.build.directory}/src/calabash.jar" tofile="${project.build.directory}/${project.artifactId}-${project.version}.${project.packaging}" overwrite="true" verbose="true" />
+                <copy file="${project.build.directory}/calabash/calabash.jar" tofile="${project.build.directory}/${project.artifactId}-${project.version}.${project.packaging}" overwrite="true" verbose="true" />
               </target>
             </configuration>
           </execution>
