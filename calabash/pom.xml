@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>com.xmlcalabash</artifactId>
-  <version>1.0.8-SNAPSHOT</version>
+  <version>1.0.8</version>
   <packaging>jar</packaging>
 
   <name>XML Calabash</name>
@@ -117,8 +117,8 @@
             <configuration>
               <target>
                 <property name="calabash.tmp.dir" value="${java.io.tmpdir}/calabash/${project.version}" />
-                <mkdir dir="${calabash.tmp.dir}"/>
-                <get dest="${calabash.tmp.dir}/source.zip" src="${calabash.source.url}" usetimestamp="true" skipexisting="true"/>
+                <mkdir dir="${calabash.tmp.dir}" />
+                <get dest="${calabash.tmp.dir}/source.zip" src="${calabash.source.url}" usetimestamp="true" skipexisting="true" />
                 <unzip dest="${calabash.tmp.dir}" src="${calabash.tmp.dir}/source.zip" />
                 <move todir="${project.build.directory}/calabash">
                   <fileset dir="${calabash.tmp.dir}">
@@ -184,4 +184,8 @@
       </build>
     </profile>
   </profiles>
+
+  <scm>
+    <tag>com.xmlcalabash-1.0.8</tag>
+  </scm>
 </project>
