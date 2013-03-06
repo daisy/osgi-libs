@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>saxon-he</artifactId>
-  <version>9.4.0-p1-SNAPSHOT</version>
+  <version>9.4.0.7-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Saxon HE (OSGi Bundle)</name>
@@ -57,7 +57,7 @@
   <properties>
     <lib.groupId>net.sf.saxon</lib.groupId>
     <lib.artifactId>Saxon-HE</lib.artifactId>
-    <lib.version>9.4</lib.version>
+    <lib.version>9.4.0.7</lib.version>
   </properties>
 
   <dependencies>
