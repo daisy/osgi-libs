@@ -92,7 +92,7 @@
               org.apache.xml.resolver.*;resolution:=optional,
               *
             </Import-Package>
-            <Embed-Dependency>*;inline=true</Embed-Dependency>
+            <Embed-Dependency>*;inline=META-INF/services/**|*w3c/**|javax/**|net/**|*.xml|*.xsl|*.properties</Embed-Dependency>
             <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
           </instructions>
         </configuration>
