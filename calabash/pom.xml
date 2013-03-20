@@ -29,7 +29,7 @@
   </licenses>
 
   <properties>
-    <calabash.source.url>https://nodeload.github.com/ndw/xmlcalabash1/zip/v1.0.8.94</calabash.source.url>
+    <calabash.source.url>https://nodeload.github.com/ndw/xmlcalabash1/zip/v1.0.9.94</calabash.source.url>
   </properties>
 
   <dependencies>
