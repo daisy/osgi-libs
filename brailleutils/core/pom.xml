@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>brailleutils-core</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Braille Utils</name>
@@ -74,7 +74,7 @@
 
   <scm>
     <connection>scm:svn:http://brailleutils.googlecode.com/svn/tags/release_1.2/src</connection>
-    <tag>brailleutils-core-1.2.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
