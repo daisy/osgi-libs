@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.daisy.libs</groupId>
   <artifactId>mysql-connector-java</artifactId>
-  <version>5.1.21</version>
+  <version>5.1.21-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>MySQL java connector (OSGI Bundle Version)</name>
   <description>MySQL java connector (OSGI Bundle Version)</description>

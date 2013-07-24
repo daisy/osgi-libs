@@ -57,7 +57,7 @@
   <properties>
     <lib.groupId>net.sf.saxon</lib.groupId>
     <lib.artifactId>Saxon-HE</lib.artifactId>
-    <lib.version>9.4.0.7</lib.version>
+    <lib.version>9.4.0-8</lib.version>
   </properties>
 
   <dependencies>
