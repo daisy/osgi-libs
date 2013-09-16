@@ -9,18 +9,18 @@ Index: cz/vutbr/web/css/CSSFactory.java
 +import javax.xml.transform.Source;
 +import javax.xml.transform.URIResolver;
  
+ import org.fit.net.DataURLHandler;
  import org.slf4j.Logger;
- import org.slf4j.LoggerFactory;
-@@ -68,6 +70,8 @@
- 
+@@ -78,6 +80,8 @@
+ 	 */
  	private static Class<? extends NodeData> ndImpl;
  
 +	private static URIResolver ur;
 +
  	/**
- 	 * Registers new TermFactory instance
- 	 * 
-@@ -221,6 +225,32 @@
+ 	 * Whether to allow lengths with no units and interpret them as pixels.
+ 	 */
+@@ -288,6 +292,32 @@
  	}
  
  	/**
@@ -80,7 +80,7 @@ Index: cz/vutbr/web/csskit/antlr/CSSInputStream.java
  /**
   * Wraps ANTLR stream with useful decorations,
   * mainly to allow switching encoding on lexer
-@@ -45,6 +52,7 @@
+@@ -55,6 +62,7 @@
  	 */
  	private String encoding;
  	
@@ -88,8 +88,8 @@ Index: cz/vutbr/web/csskit/antlr/CSSInputStream.java
  	
  	public static CSSInputStream stringStream(String source) throws IOException {
  		CSSInputStream stream = new CSSInputStream();
-@@ -62,6 +70,14 @@
- 	public static CSSInputStream urlStream(URL source) throws IOException {
+@@ -72,6 +80,14 @@
+ 	public static CSSInputStream urlStream(URL source, String encoding) throws IOException {
  		CSSInputStream stream = new CSSInputStream();
  		
 +		try {
@@ -101,11 +101,11 @@ Index: cz/vutbr/web/csskit/antlr/CSSInputStream.java
 +		}
 +
  		stream.base = source;
- 		stream.encoding = Charset.defaultCharset().name();
- 		
-@@ -201,6 +217,13 @@
- 	}
- 	
+ 		if (encoding != null)
+             stream.encoding = encoding;
+@@ -221,6 +237,13 @@
+ 	 * @param base The new base URL.
+ 	 */
  	public void setBase(URL base) {
 +		try {
 +			Source resolvedBase = ur.resolve(base.toString(), "");	
