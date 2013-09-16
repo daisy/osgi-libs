@@ -12,15 +12,16 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>jstyleparser</artifactId>
-  <version>1.7.0-2-SNAPSHOT</version>
+  <version>1.13.0-p1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>jStyleParser</name>
-  <description>jStyleParser is a CSS parser written in Java. It has its own application interface
-	that is designed to allow an efficient CSS processing in Java and mapping the values to the
-	Java data types. It parses CSS 2.1 style sheets into structures that can be efficiently
-	assigned to DOM elements. It is intended be the primary CSS parser for the CSSBox library.
-	While handling errors, it is user agent conforming according to the CSS specification.
+  <description>
+    jStyleParser is a CSS parser written in Java. It has its own application interface
+    that is designed to allow an efficient CSS processing in Java and mapping the values to the
+    Java data types. It parses CSS 2.1 style sheets into structures that can be efficiently
+    assigned to DOM elements. It is intended be the primary CSS parser for the CSSBox library.
+    While handling errors, it is user agent conforming according to the CSS specification.
   </description>
   <url>http://cssbox.sourceforge.net/jstyleparser/</url>
 
@@ -56,6 +57,12 @@
         <role>Contributor</role>
       </roles>
     </developer>
+    <developer>
+      <name>Bert Frees</name>
+      <roles>
+        <role>Contributor</role>
+      </roles>
+    </developer>
   </developers>
 
   <dependencies>
@@ -77,8 +84,7 @@
   </dependencies>
 
   <scm>
-    <connection>scm:svn:http://cssbox.svn.sourceforge.net/svnroot/cssbox/jstyleparser/tags/1.7/src/cz</connection>
-    <tag>HEAD</tag>
+    <connection>scm:svn:http://svn.code.sf.net/p/cssbox/jstyleparser/code/tags/1.13/src</connection>
   </scm>
 
   <build>
@@ -96,8 +102,11 @@
             </goals>
             <configuration>
               <connectionType>connection</connectionType>
-              <checkoutDirectory>${basedir}/target/sources/cz</checkoutDirectory>
+              <checkoutDirectory>${basedir}/target/sources</checkoutDirectory>
               <excludes>
+                META-INF/**,
+                test/**,
+                logback.xml,
                 **/CSSLexer.java,
                 **/CSSParser.java,
                 **/CSSTreeParser.java,
@@ -114,11 +123,9 @@
         <configuration>
           <patchDirectory>src/main/patches</patchDirectory>
           <patches>
+            <patch>uri_resolver.patch</patch>
+            <patch>declaration_transformer.patch</patch>
             <patch>saxon.patch</patch>
-            <patch>fixes.patch</patch>
-            <patch>new_features.patch</patch>
-            <patch>uriresolver.patch</patch>
-            <patch>paged_media.patch</patch>
           </patches>
         </configuration>
         <executions>
