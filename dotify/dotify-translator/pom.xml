@@ -105,7 +105,7 @@
               <goal>checkout</goal>
             </goals>
             <configuration>
-              <connectionUrl>scm:svn:http://daisymfc.svn.sourceforge.net/svnroot/daisymfc/tags/v20100125/src/org/daisy/util/i18n</connectionUrl>
+              <connectionUrl>scm:svn:http://svn.code.sf.net/p/daisymfc/code/tags/v20100125/src/org/daisy/util/i18n</connectionUrl>
               <checkoutDirectory>${basedir}/target/sources/org/daisy/util/i18n</checkoutDirectory>
               <includes>
                 CharUtils.java,
