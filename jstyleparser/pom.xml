@@ -121,6 +121,7 @@
         <artifactId>maven-patch-plugin</artifactId>
         <version>1.1.1</version>
         <configuration>
+		  <optimizations>false</optimizations>
           <patchDirectory>src/main/patches</patchDirectory>
           <patches>
             <patch>uri_resolver.patch</patch>
