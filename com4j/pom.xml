@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.daisy</groupId>
+    <artifactId>daisy</artifactId>
+    <version>2</version>
+    <relativePath/>
+  </parent>
+  <groupId>org.daisy.libs</groupId>
+
+  <version>1.0.0-SNAPSHOT</version>
+  <artifactId>com4j-osgi</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Com4j (OSGi Bundle)</name>
+  <description>An OSGi bundle for Com4j and the interfaces using it (SAPI...)</description>
+
+  <properties>
+     <com4j.version>20120426-2</com4j.version>
+	 <lib.dir>target/native</lib.dir>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.jvnet.com4j</groupId>
+      <artifactId>com4j</artifactId>
+	  <version>${com4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.concord</groupId>
+      <version>0.1.0-SNAPSHOT</version>
+      <artifactId>sapi</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>wagon-maven-plugin</artifactId>
+			<version>1.0-beta-4</version>
+			<executions>
+				<execution>
+					<id>download-dll32</id>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>download-single</goal>
+					</goals>
+					<configuration>
+						<url>https://github.com/kohsuke/com4j/raw/release-${com4j.version}/native/Release</url>
+						<fromFile>com4j.dll</fromFile>
+						<toFile>${lib.dir}/com4j-x86.dll</toFile>
+					</configuration>
+				</execution>
+				<execution>
+					<id>download-dll64</id>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>download-single</goal>
+					</goals>
+					<configuration>
+						<url>https://github.com/kohsuke/com4j/raw/release-${com4j.version}/native/x64/Release</url>
+						<fromFile>com4j.dll</fromFile>
+						<toFile>${lib.dir}/com4j-amd64.dll</toFile>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	
+		<plugin>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<configuration>
+			<instructions>
+				<Bundle-SymbolicName>com4j-osgi</Bundle-SymbolicName>
+				<Import-Package>*;resolution:=optional</Import-Package>
+				<_exportcontents>*</_exportcontents>
+				<Embed-Dependency>sapi,com4j</Embed-Dependency>
+				<Bundle-NativeCode>
+					com4j-x86.dll;osname=Win32;processor=x86,
+					com4j-amd64.dll;com4j-x86_64.dll;osname=Win32;processor=amd64
+				</Bundle-NativeCode>
+				<!-- com4j-amd64.dll is copied twice because com4j loads the dll with -->
+				<!-- System.loadLibrary("com4j-"+System.getProperty(os.arch)+".dll") -->
+				<!-- which does not follow any alias -->
+				<Include-Resource>
+					com4j-x86.dll=${lib.dir}/com4j-x86.dll,
+					com4j-x86_64.dll=${lib.dir}/com4j-amd64.dll,
+					com4j-amd64.dll=${lib.dir}/com4j-amd64.dll
+				</Include-Resource>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>cc-repo-internal-snapshot</id>
+      <name>Concord Consortium Internal</name>
+      <url>http://source.concord.org/maven2/internal_snapshot</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>public</id>
+      <name>Java.net Repository for Maven</name>
+     <url>https://maven-us.nuxeo.org/nexus/content/repositories/public</url>
+    </repository>
+  </repositories>
+</project>
