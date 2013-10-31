@@ -30,6 +30,7 @@
     <module>mysql</module>
     <module>saxon</module>
     <module>servlet-api</module>
+    <module>com4j</module>
   </modules>
 
 </project>
