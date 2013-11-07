@@ -14,7 +14,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>dotify-translator</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-alpha1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>DotifyTranslator</name>
@@ -92,7 +92,7 @@
             </goals>
             <configuration>
               <connectionType>connection</connectionType>
-              <scmVersion>260</scmVersion>
+              <scmVersion>151</scmVersion>
               <scmVersionType>revision</scmVersionType>
               <checkoutDirectory>${basedir}/target/sources</checkoutDirectory>
             </configuration>
