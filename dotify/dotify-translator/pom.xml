@@ -92,7 +92,7 @@
             </goals>
             <configuration>
               <connectionType>connection</connectionType>
-              <scmVersion>151</scmVersion>
+              <scmVersion>260</scmVersion>
               <scmVersionType>revision</scmVersionType>
               <checkoutDirectory>${basedir}/target/sources</checkoutDirectory>
             </configuration>
