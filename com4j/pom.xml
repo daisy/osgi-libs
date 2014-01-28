@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.daisy</groupId>
+		<artifactId>daisy</artifactId>
+		<version>2</version>
+		<relativePath/>
+	</parent>
+	<groupId>org.daisy.libs</groupId>
+
+	<version>20120426.2.0-SNAPSHOT</version>
+	<artifactId>com4j-osgi</artifactId>
+	<packaging>bundle</packaging>
+
+	<name>Com4j (OSGi Bundle)</name>
+	<description>OSGi bundle for Com4j</description>
+	<url>https://com4j.java.net/</url>
+
+	<organization>
+		<name>The COM4J Project</name>
+		<url>https://com4j.java.net/</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://raw.github.com/kohsuke/com4j/master/LICENSE.txt</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<lib.version>20120426-2</lib.version>
+		<lib.dir>target/native</lib.dir>
+		<lib.groupId>org.jvnet.com4j</lib.groupId>
+		<lib.artifactId>com4j</lib.artifactId>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${lib.groupId}</groupId>
+			<artifactId>${lib.artifactId}</artifactId>
+			<version>${lib.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution> 
+						<id>get-dll</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${lib.groupId}</groupId>
+									<artifactId>${lib.artifactId}</artifactId>
+									<version>${lib.version}</version>
+									<outputDirectory>${lib.dir}</outputDirectory>
+									<includes>**/*.dll</includes>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>com4j-osgi</Bundle-SymbolicName>
+						<Import-Package>*;resolution:=optional</Import-Package>
+						<_exportcontents>*</_exportcontents>
+						<Embed-Dependency>com4j;inline=**/*.class</Embed-Dependency>
+						<Bundle-NativeCode>
+						  com4j-x86.dll;osname=Win32;processor=x86,
+						  com4j-amd64.dll;com4j-x86_64.dll;osname=Win32;processor=amd64
+						</Bundle-NativeCode>
+						<!-- com4j-amd64.dll is copied twice because com4j loads the dll with -->
+						<!-- System.loadLibrary("com4j-"+System.getProperty(os.arch)+".dll") -->
+						<!-- which does not follow any alias -->
+						<Include-Resource>
+						  {maven-resources},
+						  com4j-x86.dll=${lib.dir}/com4j/com4j-x86.dll,
+						  com4j-x86_64.dll=${lib.dir}/com4j/com4j-amd64.dll,
+						  com4j-amd64.dll=${lib.dir}/com4j/com4j-amd64.dll
+						</Include-Resource>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>sonatype-oss-release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>fetch-sources</id>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${lib.groupId}</groupId>
+											<artifactId>${lib.artifactId}</artifactId>
+											<version>${lib.version}</version>
+											<classifier>sources</classifier>
+											<outputDirectory>${project.build.directory}/sources</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>sources.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<includeDependencySources>true</includeDependencySources>
+									<dependencySourceIncludes>
+										<dependencySourceInclude>${lib.groupId}:${lib.artifactId}</dependencySourceInclude>
+									</dependencySourceIncludes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>Java.net Repository for Maven</name>
+			<url>https://maven-us.nuxeo.org/nexus/content/repositories/public</url>
+		</repository>
+	</repositories>
+</project>
