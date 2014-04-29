@@ -1,7 +1,7 @@
-OSGi-fied libraries 
+OSGi-fied libraries
 ===================
 
-[![Build Status](https://travis-ci.org/daisy-consortium/osgi-libs.png?branch=master)](https://travis-ci.org/daisy-consortium/osgi-libs)
+[![Build Status](https://travis-ci.org/daisy/osgi-libs.png?branch=master)](https://travis-ci.org/daisy/osgi-libs)
 
 This project contains a set of Maven POM files used to build OSGi-ready and Maven-ready versions of various third-party libraries:
 
