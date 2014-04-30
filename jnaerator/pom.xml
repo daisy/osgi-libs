@@ -13,8 +13,8 @@
   </parent>
   <groupId>org.daisy.libs</groupId>
 
-  <version>0.12-SNAPSHOT</version>
-  <artifactId>jnaerator-osgi</artifactId>
+  <version>0.11</version>
+  <artifactId>jnaerator</artifactId>
   <packaging>bundle</packaging>
 
   <name>JNAerator (OSGi Bundle)</name>
@@ -33,7 +33,7 @@
   </licenses>
 
   <properties>
-    <lib1.version>0.12-SNAPSHOT</lib1.version>
+    <lib1.version>0.11</lib1.version>
     <lib1.groupId>com.nativelibs4java</lib1.groupId>
     <lib1.artifactId>jnaerator-runtime</lib1.artifactId>
     <lib2.version>0.11</lib2.version>
@@ -62,7 +62,6 @@
 
   <build>
     <plugins>
-
       <plugin>
 	<groupId>org.apache.felix</groupId>
 	<artifactId>maven-bundle-plugin</artifactId>
@@ -164,5 +163,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>
