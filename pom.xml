@@ -30,6 +30,7 @@
     <module>mysql</module>
     <module>saxon</module>
     <module>servlet-api</module>
+    <module>jnaerator</module>
   </modules>
 
 </project>
