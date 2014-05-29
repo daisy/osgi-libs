@@ -22,7 +22,6 @@
     <module>brailleutils/core</module>
     <module>brailleutils/catalog</module>
     <module>calabash</module>
-    <module>commons-httpclient</module>
     <module>dotify/dotify-translator</module>
     <module>jing</module>
     <module>jsslutils</module>
