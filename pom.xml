@@ -26,7 +26,6 @@
     <module>jing</module>
     <module>jnaerator</module>
     <module>jsslutils</module>
-    <module>jstyleparser</module>
     <module>mysql</module>
     <module>saxon</module>
     <module>servlet-api</module>
