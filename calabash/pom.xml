@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>com.xmlcalabash</artifactId>
-  <version>1.0.23</version>
+  <version>1.0.23-p1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>XML Calabash</name>
@@ -107,7 +107,7 @@
 
   <scm>
     <connection>scm:git:https://github.com/ndw/xmlcalabash1.git</connection>
-    <tag>com.xmlcalabash-1.0.23</tag>
+    <tag>${calabash.tag}</tag>
   </scm>
 
   <build>
