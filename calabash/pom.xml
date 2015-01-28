@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>com.xmlcalabash</artifactId>
-  <version>1.0.23-SNAPSHOT</version>
+  <version>1.0.23</version>
   <packaging>jar</packaging>
 
   <name>XML Calabash</name>
@@ -107,7 +107,7 @@
 
   <scm>
     <connection>scm:git:https://github.com/ndw/xmlcalabash1.git</connection>
-    <tag>${calabash.tag}</tag>
+    <tag>com.xmlcalabash-1.0.23</tag>
   </scm>
 
   <build>
@@ -236,33 +236,33 @@
                   <target>
                     <path id="build.classpath">
                       <fileset dir="${sources.dir}/lib">
-                        <include name="*.jar"/>
+                        <include name="*.jar" />
                       </fileset>
-                      <!-- <pathelement location="${sources.dir}/lib"/> -->
+                      <!-- <pathelement location="${sources.dir}/lib" /> -->
                     </path>
                     <javadoc destdir="${project.build.directory}/javadoc" classpathref="build.classpath">
                       <fileset dir="${sources.dir}/src" defaultexcludes="yes">
-                        <include name="**"/>
-                        <exclude name="com/xmlcalabash/extensions/MetadataExtractor.java"/>
-                        <exclude name="com/xmlcalabash/extensions/DiTAA.java"/>
-                        <exclude name="com/xmlcalabash/extensions/PlantUML.java"/>
-                        <exclude name="com/xmlcalabash/extensions/DeltaXML.java"/>
-                        <exclude name="com/xmlcalabash/extensions/SendMail.java"/>
-                        <exclude name="com/xmlcalabash/extensions/xmlunit/Compare.java"/>
-                        <exclude name="com/xmlcalabash/extensions/marklogic/XCCAdhocQuery.java"/>
-                        <exclude name="com/xmlcalabash/extensions/marklogic/XCCInsertDocument.java"/>
-                        <exclude name="com/xmlcalabash/extensions/marklogic/XCCInvokeModule.java"/>
-                        <exclude name="com/xmlcalabash/extensions/Sparql.java"/>
-                        <exclude name="com/xmlcalabash/extensions/RDFa.java"/>
-                        <exclude name="com/xmlcalabash/extensions/RDFLoad.java"/>
-                        <exclude name="com/xmlcalabash/extensions/RDFStep.java"/>
-                        <exclude name="com/xmlcalabash/extensions/RDFStore.java"/>
-                        <exclude name="com/xmlcalabash/util/FoXEP.java"/>
-                        <exclude name="com/xmlcalabash/util/FoFOP.java"/>
-                        <exclude name="com/xmlcalabash/util/FoAH.java"/>
-                        <exclude name="com/xmlcalabash/util/CssAH.java"/>
-                        <exclude name="com/xmlcalabash/util/CssPrince.java"/>
-                        <exclude name="com/xmlcalabash/drivers/SaxonProblem.java"/>
+                        <include name="**" />
+                        <exclude name="com/xmlcalabash/extensions/MetadataExtractor.java" />
+                        <exclude name="com/xmlcalabash/extensions/DiTAA.java" />
+                        <exclude name="com/xmlcalabash/extensions/PlantUML.java" />
+                        <exclude name="com/xmlcalabash/extensions/DeltaXML.java" />
+                        <exclude name="com/xmlcalabash/extensions/SendMail.java" />
+                        <exclude name="com/xmlcalabash/extensions/xmlunit/Compare.java" />
+                        <exclude name="com/xmlcalabash/extensions/marklogic/XCCAdhocQuery.java" />
+                        <exclude name="com/xmlcalabash/extensions/marklogic/XCCInsertDocument.java" />
+                        <exclude name="com/xmlcalabash/extensions/marklogic/XCCInvokeModule.java" />
+                        <exclude name="com/xmlcalabash/extensions/Sparql.java" />
+                        <exclude name="com/xmlcalabash/extensions/RDFa.java" />
+                        <exclude name="com/xmlcalabash/extensions/RDFLoad.java" />
+                        <exclude name="com/xmlcalabash/extensions/RDFStep.java" />
+                        <exclude name="com/xmlcalabash/extensions/RDFStore.java" />
+                        <exclude name="com/xmlcalabash/util/FoXEP.java" />
+                        <exclude name="com/xmlcalabash/util/FoFOP.java" />
+                        <exclude name="com/xmlcalabash/util/FoAH.java" />
+                        <exclude name="com/xmlcalabash/util/CssAH.java" />
+                        <exclude name="com/xmlcalabash/util/CssPrince.java" />
+                        <exclude name="com/xmlcalabash/drivers/SaxonProblem.java" />
                       </fileset>
                     </javadoc>
                   </target>
