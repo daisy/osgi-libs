@@ -20,6 +20,22 @@ index fadb83a..0a8e0be 100644
          profileWriter.startContent();
      }
  
+diff --git src/com/xmlcalabash/runtime/XPipelineCall.java src/com/xmlcalabash/runtime/XPipelineCall.java
+index cd47c0b..063b550 100644
+--- src/com/xmlcalabash/runtime/XPipelineCall.java
++++ src/com/xmlcalabash/runtime/XPipelineCall.java
+@@ -89,8 +89,10 @@ public class XPipelineCall extends XAtomicStep {
+                 newstep.outputs.put(port, outputs.get(port));
+             }
+         }
+
++        runtime.start(this);
+         newstep.run();
++        runtime.finish(this);
+ 
+     }
+ }
+
 -- 
 2.1.0
 
