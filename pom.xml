@@ -19,16 +19,17 @@
   <description>Aggregator POM to build all the DAISY Pipeline 2</description>
 
   <modules>
-    <module>brailleutils/core</module>
-    <module>brailleutils/catalog</module>
-    <module>calabash</module>
-    <module>dotify/dotify-translator</module>
-    <module>jing</module>
-    <module>jnaerator</module>
-    <module>jsslutils</module>
-    <module>mysql</module>
-    <module>saxon</module>
-    <module>servlet-api</module>
+    <!-- <module>brailleutils/core</module> -->
+    <!-- <module>brailleutils/catalog</module> -->
+    <!-- <module>calabash</module> -->
+    <!-- <module>dotify/dotify-translator</module> -->
+    <!-- <module>jing</module> -->
+    <!-- <module>jnaerator</module> -->
+    <!-- <module>jsslutils</module> -->
+    <module>logback-osgi-adapter</module>
+    <!-- <module>mysql</module> -->
+    <!-- <module>saxon</module> -->
+    <!-- <module>servlet-api</module> -->
   </modules>
 
 </project>
