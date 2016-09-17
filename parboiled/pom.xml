@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.daisy.libs</groupId>
   <artifactId>parboiled</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Parboiled</name>
   <description>parboiled is a mixed Java/Scala library providing for lightweight and easy-to-use, yet powerful and elegant parsing of arbitrary input text based on Parsing expression grammars (PEGs). This bundle wraps two different libraries, parboiled-core and parboiled-java, as they offer classes in the same package path</description>
@@ -194,8 +194,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <tag>parboiled-1.0.0</tag>
-  </scm>
 </project>
