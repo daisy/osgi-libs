@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.daisy.libs</groupId>
   <artifactId>pegdown</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <!--<properties>-->
   <!--<jing.ant>ant</jing.ant>-->
@@ -31,7 +31,7 @@
     <connection>scm:git:https://github.com/sirthias/pegdown</connection>
     <developerConnection>scm:git:https://github.com/sirthias/pegdown</developerConnection>
     <url>https://github.com/sirthias/pegdown</url>
-    <tag>pegdown-1.0.0</tag>
+    <tag>1.6.0</tag>
   </scm>
   <developers>
     <developer>
