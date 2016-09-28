@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.daisy</groupId>
+    <artifactId>daisy</artifactId>
+    <version>2</version>
+    <relativePath />
+  </parent>
+  
+  <groupId>org.daisy.libs</groupId>
+  <artifactId>io.bit3.jsass</artifactId>
+  <version>4.1.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.daisy.pipeline</groupId>
+        <artifactId>framework-bom</artifactId>
+        <version>1.10.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
+  <dependencies>
+    <dependency>
+      <groupId>io.bit3</groupId>
+      <artifactId>jsass</artifactId>
+      <version>4.1.0</version>
+    </dependency>
+    <!--
+        force version from framework-bom (2.3, otherwise 2.4)
+    -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>3.0.1</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>io.bit3.jsass</Bundle-SymbolicName>
+            <Export-Package>
+              io.bit3.jsass,
+              io.bit3.jsass.adapter,
+              io.bit3.jsass.annotation,
+              io.bit3.jsass.context,
+              io.bit3.jsass.function,
+              io.bit3.jsass.function.arguments.converter,
+              io.bit3.jsass.function.arguments.factory,
+              io.bit3.jsass.importer,
+              io.bit3.jsass.type
+            </Export-Package>
+            <Import-Package>
+              org.apache.commons.io,
+              org.apache.commons.lang3,
+              org.apache.commons.lang3.text.translate
+            </Import-Package>
+            <Private-Package>
+              darwin,
+              linux-x64,
+              windows-x32,
+              windows-x64
+            </Private-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>
