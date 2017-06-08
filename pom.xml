@@ -20,7 +20,7 @@
 
   <modules>
     <!-- <module>calabash</module> -->
-    <!-- <module>jing</module> -->
+    <module>jing</module>
     <!-- <module>jnaerator</module> -->
     <!-- <module>jsslutils</module> -->
     <!-- <module>logback-osgi-adapter</module> -->
