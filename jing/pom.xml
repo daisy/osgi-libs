@@ -180,6 +180,7 @@
                   org.iso_relax.*;resolution:=optional,
                   *
                 </Import-Package>
+                <SPI-Consumer>javax.xml.parsers.SAXParserFactory#newInstance</SPI-Consumer>
                 <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Private-Package</_removeheaders>
             </instructions>
           </configuration>
