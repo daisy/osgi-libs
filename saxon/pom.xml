@@ -97,6 +97,7 @@
             <SPI-Provider>*</SPI-Provider>
             <SPI-Consumer>javax.xml.parsers.SAXParserFactory#newInstance</SPI-Consumer>
             <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+            <SPI-Provider>*</SPI-Provider>
           </instructions>
         </configuration>
       </plugin>
