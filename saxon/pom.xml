@@ -82,7 +82,6 @@
             <Bundle-RequiredExecutionEnvironment>J2SE-1.5</Bundle-RequiredExecutionEnvironment>
             <Main-Class>net.sf.saxon.Transform</Main-Class>
             <Export-Package>
-              javax.xml.xquery.*,
               net.sf.saxon.*;version=${project.version}
             </Export-Package>
             <Import-Package>
@@ -91,12 +90,13 @@
               javax.xml.xquery;resolution:=optional,
               org.apache.xml.resolver.*;resolution:=optional,
               com.saxonica.*;resolution:=optional,
+              !net.sf.saxon.*,
               *
             </Import-Package>
             <Embed-Dependency>*;inline=META-INF/services/**|*w3c/**|javax/**|net/**|*.xml|*.xsl|*.properties</Embed-Dependency>
             <SPI-Provider>*</SPI-Provider>
             <SPI-Consumer>javax.xml.parsers.SAXParserFactory#newInstance</SPI-Consumer>
-            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource</_removeheaders>
+            <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource,Private-Package</_removeheaders>
           </instructions>
         </configuration>
       </plugin>
