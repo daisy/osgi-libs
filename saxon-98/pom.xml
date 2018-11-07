@@ -66,6 +66,12 @@
       <artifactId>${lib.artifactId}</artifactId>
       <version>${lib.version}</version>
     </dependency>
+    <dependency>
+      <groupId>${lib.groupId}</groupId>
+      <artifactId>${lib.artifactId}</artifactId>
+      <version>${lib.version}</version>
+      <classifier>xqj</classifier>
+    </dependency>
   </dependencies>
 
   <build>
@@ -83,7 +89,8 @@
             <Main-Class>net.sf.saxon.Transform</Main-Class>
             <Export-Package>
               !net.sf.saxon.data.*,
-              net.sf.saxon.*;version=${project.version}
+              net.sf.saxon.*;version=${project.version},
+              com.saxonica.xqj.pull;version=${project.version}
             </Export-Package>
             <Import-Package>
               javax.xml.stream;version="1.0.1";resolution:=optional,
@@ -93,7 +100,9 @@
               !net.sf.saxon.*,
               *
             </Import-Package>
-            <Embed-Dependency>*;inline=META-INF/services/**|*w3c/**|javax/**|net/**|*.xml|*.xsl|*.properties</Embed-Dependency>
+            <Embed-Dependency>
+              *;inline=META-INF/services/**|com/saxonica/xqj/pull/**|net/sf/saxon/**|*.xml|*.xsl|*.properties
+            </Embed-Dependency>
             <SPI-Provider>*</SPI-Provider>
             <SPI-Consumer>javax.xml.parsers.SAXParserFactory#newInstance</SPI-Consumer>
             <_removeheaders>Built-By,Bnd-LastModified,Embed-Dependency,Include-Resource,Private-Package</_removeheaders>
