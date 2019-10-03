@@ -109,6 +109,22 @@
         </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.2</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-provider-gitexe</artifactId>
+              <version>1.9.1</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <profiles>
@@ -180,6 +196,7 @@
                   <goal>jar</goal>
                 </goals>
                 <configuration>
+                  <additionalparam>-Xdoclint:none</additionalparam>
                   <includeDependencySources>true</includeDependencySources>
                   <dependencySourceIncludes>
                     <dependencySourceInclude>${lib1.groupId}:${lib1.artifactId}</dependencySourceInclude>
