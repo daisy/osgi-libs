@@ -26,7 +26,7 @@
     <!-- <module>mysql</module> -->
     <module>parboiled</module>
     <module>pegdown</module>
-    <module>saxon-98</module>
+    <module>saxon</module>
     <!-- <module>servlet-api</module> -->
   </modules>
 
