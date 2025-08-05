@@ -12,7 +12,7 @@
 
   <groupId>org.daisy.libs</groupId>
   <artifactId>servlet-api</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>JavaServlet(TM) Specification (OSGi Bundle)</name>
@@ -127,8 +127,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <tag>v3.1.0</tag>
-  </scm>
 </project>
